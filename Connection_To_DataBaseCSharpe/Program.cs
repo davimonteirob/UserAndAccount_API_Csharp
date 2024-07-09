@@ -2,9 +2,15 @@
 using Connection_To_DataBaseCSharpe.DataBase;
 using Connection_To_DataBaseCSharpe.Models;
 
+// assim conectamos o nosso projeto com o banco de dados, usando o adonet, idbConnection e SqlConnection
 try
 {
+    //A instrução using tem como objetivo principal garantir que objetos descartáveis sejam utilizados corretamente.
     //inserimos a instrução using pois podemos gerenciar os recursos de conexão
+    //Neste exemplo utilizado no curso, a variável connection foi declarada como using,
+    //portanto, será descartada ao finalizar a execução do try.
+    //Com isso conseguimos aplicar uma boa prática e gerenciar melhor os recursos que estão sendo utilizados
+    //e mantê-los somente quando estiverem sendo utilizados.
     using var connection = new Connection().ObterConexao();
     connection.Open();
     Console.WriteLine(connection.State);//uma verificação do status da nossa conexão, ele retorna o estado da nossa conexão
