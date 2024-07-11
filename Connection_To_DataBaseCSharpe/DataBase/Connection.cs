@@ -32,15 +32,20 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             using var connection = ObterConexao();
             connection.Open(); //para abrir a nossa conexão
 
-            string sql = "SELECT * FROM Usuarrios";
+
+
             
+
+            string sql = "SELECT * FROM Usuarios";
+
 
             // agora que já temos o comando e a conexão para usar e consultar, devemos usar o nosso Objeto SqlCommand
 
             SqlCommand command = new SqlCommand(sql, connection);
-            using SqlDataReader dataReader = command.ExecuteReader();
-
-            while (dataReader.Read())
+            using SqlDataReader dataReader = command.ExecuteReader(); 
+            //aqui colocamos uma verificação para definir o que a gente quer ler da nossa tabela
+            while (dataReader.Read())// chamamos o método 'Read' no data Reade, que irá fazer a leitura
+                //da informações que iremos passar.
             {//                                       aqui colocamos o nome que queremos que seja lido na tabela do Db
                 string nomeUsuario = Convert.ToString(dataReader["Nome"]);
                 int idadeUsuario = Convert.ToInt32(dataReader["Idade"]);
