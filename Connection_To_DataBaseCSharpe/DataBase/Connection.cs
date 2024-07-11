@@ -33,6 +33,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             connection.Open(); //para abrir a nossa conexão
 
             string sql = "SELECT * FROM Usuarrios";
+            
 
             // agora que já temos o comando e a conexão para usar e consultar, devemos usar o nosso Objeto SqlCommand
 
