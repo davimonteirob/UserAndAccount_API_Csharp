@@ -72,13 +72,18 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         {
             using var connection = ObterConexao();
             connection.Open();
-
+                                                                               // a funçãp do @, declarar uma variável
             string query = "INSERT INTO Usuarios (Nome, Idade, Endereço) VALUES (@Nome, @Idade, @Endereço)";
             SqlCommand command = new SqlCommand(query,connection);
 
-            command.Parameters.AddWithValue("@Nome", usuario.Nome);
-            command.Parameters.AddWithValue("Idade", usuario.Idade);
-            command.Parameters.AddWithValue("Endereço", usuario.Endereço);
+            command.Parameters.AddWithValue("@Nome", usuario.Nome); // funciona como: var @Nome = usuario.Nome;
+            command.Parameters.AddWithValue("@Idade", usuario.Idade);
+            command.Parameters.AddWithValue("@Endereço", usuario.Endereço);
+            command.ExecuteNonQuery();
+
+
+
+
 
         }
     }
