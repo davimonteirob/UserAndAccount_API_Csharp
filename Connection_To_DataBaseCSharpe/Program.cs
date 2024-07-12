@@ -51,7 +51,11 @@ internal class Program
             Console.WriteLine(ex.Message);
         }
 
-        return;
+        Console.WriteLine("\n");
+        Console.WriteLine("## Adicionando Usuário ##");
+        Console.WriteLine("\n");
+
+
 
 
         user.Menu();

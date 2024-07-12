@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Connection_To_DataBaseCSharpe.DataBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,14 +9,13 @@ namespace Connection_To_DataBaseCSharpe.Models
 {
     public class Usuario
     {
-        List<Usuario> usuarios = new List<Usuario>();
+        Usuario[] usuarios = new Usuario[] { };
         public Usuario(string nome, int idade, string endereço)
         {
             Nome = nome;
             Idade = idade;
             Endereço = endereço;
         }
-
         public string Nome { get; set; }
         public int Idade { get; set; }
         public string Endereço { get; set; }
@@ -44,9 +44,14 @@ namespace Connection_To_DataBaseCSharpe.Models
             
         public void AdicionarUsuario()
         {
+            
+            //precisamos colocar um id no nosso usuario para facilitar a busca na list
             Console.Clear();
             Console.WriteLine("## ADICIONAR USUÁRIO ##");
             Console.WriteLine("\n");
+
+            Console.WriteLine("Digite a posição do array");
+            int posiçao = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Digite o Nome: ");
             string nome = Console.ReadLine();
@@ -59,8 +64,21 @@ namespace Connection_To_DataBaseCSharpe.Models
             Console.WriteLine("Digite o endereço");
             string endereço = Console.ReadLine();
 
-            usuarios.Add(new Usuario(nome, idade, endereço));
+            Usuario usuario01 = new Usuario(nome, idade, endereço);
+            //------Adicionar Usuario ao DataBase------------------
+            try
+            {
+                //agora precisamos dar um jeito de adicionar o usuario solicitado no método em nosso connection.
+                var connection = new Connection();
+                connection.AdicionarUsuario(usuario01);
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
+            //-----------------------------------------------------
             Thread.Sleep(3000);
             Console.WriteLine("Dados do usuario adicionado com Sucesso!");
 

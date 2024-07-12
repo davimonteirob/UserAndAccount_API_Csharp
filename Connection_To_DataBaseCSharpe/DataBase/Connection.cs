@@ -67,5 +67,19 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             return listaUsuario;
 
         }
+
+        public void AdicionarUsuario(IEnumerable<Usuario> usuario)
+        {
+            using var connection = ObterConexao();
+            connection.Open();
+
+            string query = "INSERT INTO Usuarios (Nome, Idade, Endereço) VALUES (@Nome, @Idade, @Endereço)";
+            SqlCommand command = new SqlCommand(query,connection);
+
+            command.Parameters.AddWithValue("@Nome", usuario.Nome);
+            command.Parameters.AddWithValue("Idade", usuario.Idade);
+            command.Parameters.AddWithValue("Endereço", usuario.Endereço);
+
+        }
     }
 }
