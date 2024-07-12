@@ -70,6 +70,7 @@ namespace Connection_To_DataBaseCSharpe.Models
             {
                 //agora precisamos dar um jeito de adicionar o usuario solicitado no método em nosso connection.
                 var connection = new Connection();
+                
                 connection.AdicionarUsuario(usuario01);
                 
             }
@@ -77,6 +78,8 @@ namespace Connection_To_DataBaseCSharpe.Models
             {
                 Console.WriteLine(ex.Message);
             }
+
+            return;
 
             //-----------------------------------------------------
             Thread.Sleep(3000);
