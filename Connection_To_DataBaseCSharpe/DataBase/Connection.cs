@@ -26,6 +26,9 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         // vamos fazer isso agora tudo pelo nosso código.
 
         //vamos fazer um método para listar as informações do banco:
+
+      
+        // a função deverá retornar uma lista de usuarios: (IEnuerable<Usuario>)
         public IEnumerable<Usuario> ListarUsuarios()
         {
             var listaUsuario = new List<Usuario>();
@@ -54,9 +57,15 @@ namespace Connection_To_DataBaseCSharpe.DataBase
 
                 listaUsuario.Add(usuario01); //adicionamos o usuario012 que está recebendo a consultar do DataBase
 
-                return listaUsuario;
+               
 
             };
+
+            //de acordo com o tipo de retorno do método, o valor a ser retornado deve ser uma lista (IEnumerable) do
+            //objeto Usuario (IEnumerable<Usuario>), portanto, a nossa listaUsuario se adegua a nosso tipo de retorno.
+            
+            return listaUsuario;
+
         }
     }
 }
