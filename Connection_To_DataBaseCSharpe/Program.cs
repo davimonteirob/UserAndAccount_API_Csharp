@@ -51,6 +51,8 @@ internal class Program
             Console.WriteLine(ex.Message);
         }
 
+        return;
+
 
         user.Menu();
     }
