@@ -56,7 +56,7 @@ internal class Program
         Console.WriteLine("\n");
 
 
-
+        user.AdicionarUsuario();
 
         user.Menu();
     }

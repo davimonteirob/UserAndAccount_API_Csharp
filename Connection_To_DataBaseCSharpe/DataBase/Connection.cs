@@ -68,7 +68,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
 
         }
 
-        public void AdicionarUsuario(IEnumerable<Usuario> usuario)
+        public void AdicionarUsuario(Usuario usuario)
         {
             using var connection = ObterConexao();
             connection.Open();
