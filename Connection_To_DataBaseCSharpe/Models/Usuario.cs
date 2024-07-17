@@ -28,6 +28,7 @@ namespace Connection_To_DataBaseCSharpe.Models
             Console.WriteLine("\n");
             Console.WriteLine("# Digite 1 para Adicionar um Usuário");
             Console.WriteLine("# Digite 2 para Exibir os Usuários");
+            Console.WriteLine("# Digite 3 para Atualizar o Usuário");
             Console.WriteLine("# Digite 0 para sair");
             int opçãoSelecionada = Convert.ToInt32(Console.ReadLine());
 
@@ -50,6 +51,9 @@ namespace Connection_To_DataBaseCSharpe.Models
                     }
                     Thread.Sleep(18000);
                     Menu();
+                    break;
+                case 3:
+                    new UsuarioDAL().AtualizarUsuario();
                     break;
 
                 case 0: break;

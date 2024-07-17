@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace Connection_To_DataBaseCSharpe.DataBase
@@ -103,14 +104,56 @@ namespace Connection_To_DataBaseCSharpe.DataBase
 
                 listaUsuario.Add(usuario01); //adicionamos o usuario01 que está recebendo a consulta do DataBase
 
-
-
             };
 
             //de acordo com o tipo de retorno do método, o valor a ser retornado deve ser uma lista (IEnumerable) do
             //objeto Usuario (IEnumerable<Usuario>), portanto, a nossa listaUsuario se adegua a nosso tipo de retorno.
 
             return listaUsuario;
+
+        }
+        //--------------------------------------------------------------------------------------------------------------\\
+        public void AtualizarUsuario()
+        {
+            //obter a conexão
+            var connection = new Connection().ObterConexao();
+            connection.Open();
+
+            Console.WriteLine("## ATUALIZAR DADOS DE USUARIO ##");
+            //Buscar os dados que queremos atualizar:
+            Console.WriteLine("Digite o ID do usuario que deseja atualizar: ");
+            int NomeParaAtt = Convert.ToInt32(Console.ReadLine());
+            int usuarioID = NomeParaAtt;
+            Console.WriteLine($"Digite o Nome para atualizar: ");
+            string novoNome = Console.ReadLine();
+            Console.WriteLine("Novo Endereço para atualizar: ");
+            string novoEndereco = Console.ReadLine();
+            Console.WriteLine("Novo E-mail para atualizar: ");
+            string novaIdade = Console.ReadLine();
+
+
+
+            //definir o script do banco de dados
+            string sql = "UPDATE Usuarios SET Nome = @NomeAtt , Idade = @IdadeAtt , Endereço = @EnderecoAtt";
+
+            //passar os dados de conexão e o script de comando no Objeto SqlCommand do ADO.NET
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@NomeAtt", novoNome);
+            command.Parameters.AddWithValue("@Idade", novaIdade);
+            command.Parameters.AddWithValue("@EnderecoAtt", novoEndereco);
+            command.ExecuteNonQuery();
+
+            Console.WriteLine("\n");
+            Console.WriteLine("Usuario Atualizado! Aguarde, logo retornaremos para o Menu principal");
+            Thread.Sleep(18000);
+
+            new Usuario("@#$","@#$","@#$").Menu();
+
+           
+        }
+        //--------------------------------------------------------------------------------------------------------------\\
+        public void DeletarUsuario()
+        {
 
         }
         //--------------------------------------------------------------------------------------------------------------\\
