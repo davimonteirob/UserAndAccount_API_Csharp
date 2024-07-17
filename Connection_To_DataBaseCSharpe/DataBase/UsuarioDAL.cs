@@ -70,7 +70,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             Console.WriteLine("Dados do usuario adicionado com Sucesso! Aguarde até que volte para o Menu.");
 
             Thread.Sleep(10000);
-            Menu();
+            new Usuario("@#$%","@#$@#","@#$%").Menu();
 
         }
 
