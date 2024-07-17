@@ -11,6 +11,8 @@ namespace Connection_To_DataBaseCSharpe.DataBase
     internal class UsuarioDAL
     {
         //Classe padrão de boas práticas para métodos que gerenciam o banco de dados.
+
+        //--------------------------------------------------------------------------------------------------------------\\
         public void AdicionarUsuario()
         {
 
@@ -55,17 +57,14 @@ namespace Connection_To_DataBaseCSharpe.DataBase
                 Console.WriteLine($"Quantidade linhas afetadas da Tabela: {retorno}Linha(s) Table - DataBase.");
 
                 command.ExecuteNonQuery();
-
-
-
-
             }
+
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
 
-            //-----------------------------------------------------
+            //--------------------------------------------------
             Thread.Sleep(3000);
             Console.WriteLine("Dados do usuario adicionado com Sucesso! Aguarde até que volte para o Menu.");
 
@@ -74,6 +73,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
 
         }
 
+        //--------------------------------------------------------------------------------------------------------------\\
         public IEnumerable<Usuario> ListarUsuarios()
         {
             var listaUsuario = new List<Usuario>();
@@ -113,5 +113,6 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             return listaUsuario;
 
         }
+        //--------------------------------------------------------------------------------------------------------------\\
     }
 }
