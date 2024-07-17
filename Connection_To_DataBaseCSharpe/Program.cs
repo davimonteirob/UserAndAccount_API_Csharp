@@ -6,7 +6,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Usuario user = new Usuario("Roberto Carlos", 78, "Rua Florestino Gaviões, 78 , Florianopolis-PE");
+        Usuario user = new Usuario("Roberto Carlos", "78", "Rua Florestino Gaviões, 78 , Florianopolis-PE");
 
         // OBS: agr que ja estabelecemos a nossa conexão no próprio método, não precisamos mais colocá-la aqui.
         // assim conectamos o nosso projeto com o banco de dados, usando o adonet, idbConnection e SqlConnection
@@ -36,27 +36,12 @@ internal class Program
 
         //o que vamos fazer agr é:
 
-        try
-        {
-            var connection = new Connection();
-            var listaUsuario = connection.ListarUsuarios();
-
-            foreach (var item in listaUsuario)
-            {
-                Console.WriteLine($" Nome: {item.Nome}, idade: {item.Idade}, Endereço: {item.Endereço}");
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+ 
 
         Console.WriteLine("\n");
         Console.WriteLine("## Adicionando Usuário ##");
         Console.WriteLine("\n");
-
-
-        user.AdicionarUsuario();
+       
 
         user.Menu();
     }
