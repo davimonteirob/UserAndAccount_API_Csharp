@@ -3,7 +3,8 @@ using Connection_To_DataBaseCSharpe.DataBase;
 using Connection_To_DataBaseCSharpe.Models;
 
 internal class Program
-{
+{ //next desadfio: incrementar a classe DAL para armazenar todos os métodos que fazem alteração na tabela do nosso banco de dados.
+    // criar o método atualizar e deletar na classe DAL.
     private static void Main(string[] args)
     {
         Usuario user = new Usuario("Roberto Carlos", "78", "Rua Florestino Gaviões, 78 , Florianopolis-PE");
