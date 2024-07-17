@@ -58,7 +58,7 @@ namespace Connection_To_DataBaseCSharpe.Models
         public void AdicionarUsuario()
         {
             
-            //precisamos colocar um id no nosso usuario para facilitar a busca na list
+            //Pegamos os dados dos usuarios:
             Console.Clear();
             Console.WriteLine("## ADICIONAR USUÁRIO ##");
             Console.WriteLine("\n");
@@ -88,10 +88,18 @@ namespace Connection_To_DataBaseCSharpe.Models
                 string query = "INSERT INTO Usuarios (Nome, Idade, Endereço) VALUES (@Nome, @Idade, @Endereço)";
                 SqlCommand command = new SqlCommand(query, connectionObter);
 
+                // dizemos para qual coluna da tabela (Nome = "@Nome") queremos adicionar o  usuario01.Nome
                 command.Parameters.AddWithValue("@Nome", usuario01.Nome); // funciona como: var @Nome = usuario.Nome;
                 command.Parameters.AddWithValue("@Idade", usuario01.Idade);
                 command.Parameters.AddWithValue("@Endereço", usuario01.Endereço);
+
+                //aqui recebemos a quantidade de linhas que foram adicionados na tabela.
+                int retorno = command.ExecuteNonQuery();
+                Console.WriteLine("\n");
+                Console.WriteLine($"Quantidade linhas afetadas da Tabela: {retorno}Linha(s) Table - DataBase.");
+
                 command.ExecuteNonQuery();
+
 
 
 
@@ -100,12 +108,10 @@ namespace Connection_To_DataBaseCSharpe.Models
             {
                 Console.WriteLine(ex.Message);
             }
-
-            
-
+          
             //-----------------------------------------------------
             Thread.Sleep(3000);
-            Console.WriteLine("Dados do usuario adicionado com Sucesso!");
+            Console.WriteLine("Dados do usuario adicionado com Sucesso! Aguarde até que volte para o Menu.");
 
             Thread.Sleep(10000);
             Menu();

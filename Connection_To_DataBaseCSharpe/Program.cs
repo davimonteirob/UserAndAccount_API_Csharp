@@ -35,12 +35,6 @@ internal class Program
 
 
         //o que vamos fazer agr é:
-
- 
-
-        Console.WriteLine("\n");
-        Console.WriteLine("## Adicionando Usuário ##");
-        Console.WriteLine("\n");
        
 
         user.Menu();
