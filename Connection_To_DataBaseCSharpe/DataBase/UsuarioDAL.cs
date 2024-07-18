@@ -167,7 +167,32 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         //--------------------------------------------------------------------------------------------------------------\\
         public void DeletarUsuario()
         {
+            Console.WriteLine("## DELETAR USUARIO POR ID ##");
+            Console.WriteLine("\n");
+            Console.WriteLine("Digite o ID do Usuario que deseja deletar");
+            
+            try
+            {
 
+                var connection = new Connection().ObterConexao();// chamar nosso método obter conexão
+                connection.Open(); //para abrir nossa conexão
+
+                string sql = "DELETE FROM Usuario WHERE IDUsuario = @IdUsuario";
+
+                Console.WriteLine("Digite o Id do Usuário: ");
+                int IdUsuario = Convert.ToInt32(Console.ReadLine());
+
+                SqlCommand command = new SqlCommand(sql,connection);// aqui passaremos os comandos do nosso database mais a conexão com o banco específico que estamos working
+                command.Parameters.AddWithValue("@IdUsuario", IdUsuario);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Console.WriteLine("\n");
+            Console.WriteLine("Usuario Deletado com sucesso!");
         }
         //--------------------------------------------------------------------------------------------------------------\\
     }
