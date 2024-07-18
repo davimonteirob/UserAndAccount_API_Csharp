@@ -116,32 +116,45 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         public void AtualizarUsuario()
         {
             //obter a conexão
-            var connection = new Connection().ObterConexao();
-            connection.Open();
 
+            Console.Clear();
             Console.WriteLine("## ATUALIZAR DADOS DE USUARIO ##");
             //Buscar os dados que queremos atualizar:
+            Console.WriteLine("\n");
             Console.WriteLine("Digite o ID do usuario que deseja atualizar: ");
             int NomeParaAtt = Convert.ToInt32(Console.ReadLine());
             int usuarioID = NomeParaAtt;
+            Console.WriteLine("Nova Idade para atualizar: ");
+            string novaIdade = Console.ReadLine();
             Console.WriteLine($"Digite o Nome para atualizar: ");
             string novoNome = Console.ReadLine();
             Console.WriteLine("Novo Endereço para atualizar: ");
             string novoEndereco = Console.ReadLine();
-            Console.WriteLine("Novo E-mail para atualizar: ");
-            string novaIdade = Console.ReadLine();
 
 
 
-            //definir o script do banco de dados
-            string sql = "UPDATE Usuarios SET Nome = @NomeAtt , Idade = @IdadeAtt , Endereço = @EnderecoAtt";
+            try
+            {
+                var connection = new Connection().ObterConexao();
+                connection.Open();
 
-            //passar os dados de conexão e o script de comando no Objeto SqlCommand do ADO.NET
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@NomeAtt", novoNome);
-            command.Parameters.AddWithValue("@Idade", novaIdade);
-            command.Parameters.AddWithValue("@EnderecoAtt", novoEndereco);
-            command.ExecuteNonQuery();
+                //definir o script do banco de dados
+                string sql = "UPDATE Usuarios SET Nome = @NomeAtt, Idade = @IdadeAtt, Endereço = @EnderecoAtt  WHERE IDUsuario = @IdUsuario";
+
+                //passar os dados de conexão e o script de comando no Objeto SqlCommand do ADO.NET
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@IdUsuario", usuarioID);
+                command.Parameters.AddWithValue("@NomeAtt", novoNome);
+                command.Parameters.AddWithValue("@IdadeAtt", novaIdade);
+                command.Parameters.AddWithValue("@EnderecoAtt", novoEndereco);
+
+                command.ExecuteNonQuery();
+            }
+            catch(Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
+
 
             Console.WriteLine("\n");
             Console.WriteLine("Usuario Atualizado! Aguarde, logo retornaremos para o Menu principal");
