@@ -35,7 +35,7 @@ namespace Connection_To_DataBaseCSharpe.Models
                     Console.WriteLine("\n");
                     foreach (var item in usuario01)
                     {
-                        Console.WriteLine($"Nome: {item.Nome}. Idade: {item.Idade}. Endereço: {item.Endereço}.");
+                        Console.WriteLine($"Id: {item.IDUsuario}. Nome: {item.Nome}. Idade: {item.Idade}. Endereço: {item.Endereço}.");
                         Console.WriteLine(" - ");
                     }
                     Thread.Sleep(18000);
