@@ -12,7 +12,8 @@ namespace Connection_To_DataBaseCSharpe.DataBase
     internal class UsuarioDAL
     {
         //Classe padrão de boas práticas para métodos que gerenciam o banco de dados.
-
+        //Basicamente, o DAL representa a estrutura de acesso aos dados, independente do tipo de banco utilizado,
+        //e o DAO é o objeto que representa o acesso a uma fonte de dados específica.
         //--------------------------------------------------------------------------------------------------------------\\
         public void AdicionarUsuario()
         {
