@@ -34,7 +34,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             Console.WriteLine("Digite o endereço");
             string endereço = Console.ReadLine();
 
-            Usuario usuario01 = new Usuario(nome, idade, endereço);
+            Usuario usuario01 = new Usuario(0, nome, idade, endereço);
             //------Adicionar Usuario ao DataBase------------------
             try
             {
@@ -70,7 +70,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             Console.WriteLine("Dados do usuario adicionado com Sucesso! Aguarde até que volte para o Menu.");
 
             Thread.Sleep(10000);
-            new Usuario("@#$%","@#$@#","@#$%").Menu();
+            new Menu().Menu_();
 
         }
 
@@ -93,14 +93,15 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             SqlCommand command = new SqlCommand(sql, connection);
             using SqlDataReader dataReader = command.ExecuteReader();
             //aqui colocamos uma verificação para definir o que a gente quer ler da nossa tabela
-            while (dataReader.Read())// chamamos o método 'Read' no data Reade, que irá fazer a leitura >>
-                                     // >> da informações que iremos passar.
+            while (dataReader.Read())// chamamos o método 'Read' no data Reade, que irá fazer a leitura no banco de acordo com >>
+                                     // >> a informações que iremos passar.
             {//                                       aqui colocamos o nome que queremos que seja lido na tabela do Db
-                string nomeUsuario = Convert.ToString(dataReader["Nome"]);//irá ler nome na tabela
+                int IdUsuario = Convert.ToInt32(dataReader["IDUsuario"]);//irá ler o IDUsuario da tabela de banco de dados
+                string nomeUsuario = Convert.ToString(dataReader["Nome"]);//irá ler nome na tabela e assim igual aos demais baixo..
                 string idadeUsuario = Convert.ToString(dataReader["Idade"]);//..
                 string endereçoUsuario = Convert.ToString(dataReader["Endereço"]);//..
                 //feito isso, podemos criar o nosso usuario.
-                Usuario usuario01 = new Usuario(nomeUsuario, idadeUsuario, endereçoUsuario);
+                Usuario usuario01 = new Usuario(IdUsuario,nomeUsuario, idadeUsuario, endereçoUsuario);
 
                 listaUsuario.Add(usuario01); //adicionamos o usuario01 que está recebendo a consulta do DataBase
 
@@ -110,9 +111,9 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             //objeto Usuario (IEnumerable<Usuario>), portanto, a nossa listaUsuario se adegua a nosso tipo de retorno.
 
             return listaUsuario;
-
-        }
+         }
         //--------------------------------------------------------------------------------------------------------------\\
+
         public void AtualizarUsuario()
         {
             //obter a conexão
@@ -160,32 +161,42 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             Console.WriteLine("Usuario Atualizado! Aguarde, logo retornaremos para o Menu principal");
             Thread.Sleep(18000);
 
-            new Usuario("@#$","@#$","@#$").Menu();
+            new Menu().Menu_();
 
            
         }
         //--------------------------------------------------------------------------------------------------------------\\
+
         public void DeletarUsuario()
         {
+            Console.Clear();
             Console.WriteLine("## DELETAR USUARIO POR ID ##");
             Console.WriteLine("\n");
             Console.WriteLine("Digite o ID do Usuario que deseja deletar");
             
             try
             {
-
                 var connection = new Connection().ObterConexao();// chamar nosso método obter conexão
                 connection.Open(); //para abrir nossa conexão
 
-                string sql = "DELETE FROM Usuario WHERE IDUsuario = @IdUsuario";
+                string sql = "DELETE FROM Usuarios WHERE IDUsuario = @IdUsuario";
 
                 Console.WriteLine("Digite o Id do Usuário: ");
                 int IdUsuario = Convert.ToInt32(Console.ReadLine());
 
                 SqlCommand command = new SqlCommand(sql,connection);// aqui passaremos os comandos do nosso database mais a conexão com o banco específico que estamos working
                 command.Parameters.AddWithValue("@IdUsuario", IdUsuario);
-                command.ExecuteNonQuery();
+
+                // LEMBRE-SE, O ExecuteNonQuery() dá um retorno de linhas afetadas. armazene elas em uma variável para utilizá-las.
+                int retorno = command.ExecuteNonQuery();
+
+                Console.WriteLine();
+                Console.WriteLine($" Linhas afetadas com essa execução: {retorno}Linha(s).");
+                Console.WriteLine();
+
+
             }
+
             catch (Exception ex) 
             {
                 Console.WriteLine(ex.Message);
@@ -193,7 +204,10 @@ namespace Connection_To_DataBaseCSharpe.DataBase
 
             Console.WriteLine("\n");
             Console.WriteLine("Usuario Deletado com sucesso!");
+            Thread.Sleep(10000);
+            new Menu().Menu_();
         }
+
         //--------------------------------------------------------------------------------------------------------------\\
     }
 }

@@ -7,7 +7,6 @@ internal class Program
     // criar o método atualizar e deletar na classe DAL.
     private static void Main(string[] args)
     {
-        Usuario user = new Usuario("Roberto Carlos", "78", "Rua Florestino Gaviões, 78 , Florianopolis-PE");
 
         // OBS: agr que ja estabelecemos a nossa conexão no próprio método, não precisamos mais colocá-la aqui.
         // assim conectamos o nosso projeto com o banco de dados, usando o adonet, idbConnection e SqlConnection
@@ -38,6 +37,6 @@ internal class Program
         //o que vamos fazer agr é:
        
 
-        user.Menu();
+        new Menu().Menu_();
     }
 }
