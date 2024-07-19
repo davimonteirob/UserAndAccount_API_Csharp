@@ -32,11 +32,8 @@ internal class Program
         // para que o programa execute até esta parte e pare a execução quando chegar no return;
         //return;
 
-
-
         //o que vamos fazer agr é:
        
-
         new Menu().Menu_();
     }
 }
