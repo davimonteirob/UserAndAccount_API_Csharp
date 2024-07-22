@@ -15,107 +15,78 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         //Basicamente, o DAL representa a estrutura de acesso aos dados, independente do tipo de banco utilizado,
         //e o DAO é o objeto que representa o acesso a uma fonte de dados específica.
         //--------------------------------------------------------------------------------------------------------------\\
-        public void AdicionarUsuario()
+        /*       public void AdicionarUsuario()
+               {
+
+                   //Pegamos os dados dos usuarios:
+                   Console.Clear();
+                   Console.WriteLine("## ADICIONAR USUÁRIO ##");
+                   Console.WriteLine("\n");
+
+                   Console.WriteLine("Digite o Nome: ");
+                   string nome = Console.ReadLine();
+
+                   //correção do erro de conversão de idade string para int:
+
+                   Console.WriteLine("\nDigite a Idade: ");
+                   string idade = Console.ReadLine();
+
+                   Console.WriteLine("\n");
+                   Console.WriteLine("Digite o endereço");
+                   string endereço = Console.ReadLine();
+
+                   Usuario usuario01 = new Usuario(0, nome, idade, endereço);
+                   //------Adicionar Usuario ao DataBase------------------
+                   try
+                   {
+                       //agora precisamos dar um jeito de adicionar o usuario solicitado no método em nosso connection.
+                       var connection = new UserContext();
+
+                       using var connectionObter = connection.ObterConexao();
+                       connectionObter.Open();
+                       // a funçãp do @, declarar uma variável
+                       string query = "INSERT INTO Usuarios (Nome, Idade, Endereço) VALUES (@Nome, @Idade, @Endereço)";
+                       SqlCommand command = new SqlCommand(query, connectionObter);
+
+                       // dizemos para qual coluna da tabela (Nome = "@Nome") queremos adicionar o  usuario01.Nome
+                       command.Parameters.AddWithValue("@Nome", usuario01.Nome); // funciona como: var @Nome = usuario.Nome;
+                       command.Parameters.AddWithValue("@Idade", usuario01.Idade);
+                       command.Parameters.AddWithValue("@Endereço", usuario01.Endereço);
+
+                       //aqui recebemos a quantidade de linhas que foram adicionados na tabela.
+                       int retorno = command.ExecuteNonQuery();
+                       Console.WriteLine("\n");
+                       Console.WriteLine($"Quantidade linhas afetadas da Tabela: {retorno}Linha(s) Table - DataBase.");
+
+                       command.ExecuteNonQuery();
+                   }
+
+                   catch (Exception ex)
+                   {
+                       Console.WriteLine(ex.Message);
+                   }
+
+                   //--------------------------------------------------
+                   Thread.Sleep(3000);
+                   Console.WriteLine("Dados do usuario adicionado com Sucesso! Aguarde até que volte para o Menu.");
+
+                   Thread.Sleep(10000);
+                   new Menu().Menu_();
+
+               } */
+
+        //--------------------------------------------------------------------------------------------------------------\\
+        public IEnumerable<Usuarios> ListarUsuarios()
         {
+            using var context = new UserContext();
 
-            //Pegamos os dados dos usuarios:
-            Console.Clear();
-            Console.WriteLine("## ADICIONAR USUÁRIO ##");
-            Console.WriteLine("\n");
-
-            Console.WriteLine("Digite o Nome: ");
-            string nome = Console.ReadLine();
-
-            //correção do erro de conversão de idade string para int:
-
-            Console.WriteLine("\nDigite a Idade: ");
-            string idade = Console.ReadLine();
-
-            Console.WriteLine("\n");
-            Console.WriteLine("Digite o endereço");
-            string endereço = Console.ReadLine();
-
-            Usuario usuario01 = new Usuario(0, nome, idade, endereço);
-            //------Adicionar Usuario ao DataBase------------------
-            try
-            {
-                //agora precisamos dar um jeito de adicionar o usuario solicitado no método em nosso connection.
-                var connection = new Connection();
-
-                using var connectionObter = connection.ObterConexao();
-                connectionObter.Open();
-                // a funçãp do @, declarar uma variável
-                string query = "INSERT INTO Usuarios (Nome, Idade, Endereço) VALUES (@Nome, @Idade, @Endereço)";
-                SqlCommand command = new SqlCommand(query, connectionObter);
-
-                // dizemos para qual coluna da tabela (Nome = "@Nome") queremos adicionar o  usuario01.Nome
-                command.Parameters.AddWithValue("@Nome", usuario01.Nome); // funciona como: var @Nome = usuario.Nome;
-                command.Parameters.AddWithValue("@Idade", usuario01.Idade);
-                command.Parameters.AddWithValue("@Endereço", usuario01.Endereço);
-
-                //aqui recebemos a quantidade de linhas que foram adicionados na tabela.
-                int retorno = command.ExecuteNonQuery();
-                Console.WriteLine("\n");
-                Console.WriteLine($"Quantidade linhas afetadas da Tabela: {retorno}Linha(s) Table - DataBase.");
-
-                command.ExecuteNonQuery();
-            }
-
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-            //--------------------------------------------------
-            Thread.Sleep(3000);
-            Console.WriteLine("Dados do usuario adicionado com Sucesso! Aguarde até que volte para o Menu.");
-
-            Thread.Sleep(10000);
-            new Menu().Menu_();
-
+            //informamos o que iremos fazer com o Usuarios digitando o "." Assim podemos dizer o que queremos retornar com a Tabela Usuarios.
+            return context.Usuarios.ToList(); //estamos retornando da Tabela de Usuarios uma lista.
         }
 
         //--------------------------------------------------------------------------------------------------------------\\
-        public IEnumerable<Usuario> ListarUsuarios()
-        {
-            var listaUsuario = new List<Usuario>();
-            //Agora que temos a nossa lista, vamos fazer a conexão dentro do método Listar().
-            //Ele será responsável por gerenciar a conexão. Toda vez que chamarmos esse método,
-            //ele fará a conexão com o banco, e não uma conexão aberta permanentemente.
-            Connection connection1 = new Connection();
-            using var connection = connection1.ObterConexao();
-            connection.Open(); //para abrir a nossa conexão
 
-            string sql = "SELECT * FROM Usuarios";
-
-
-            // agora que já temos o comando e a conexão para usar e consultar, devemos usar o nosso Objeto SqlCommand
-
-            SqlCommand command = new SqlCommand(sql, connection);
-            using SqlDataReader dataReader = command.ExecuteReader();
-            //aqui colocamos uma verificação para definir o que a gente quer ler da nossa tabela
-            while (dataReader.Read())// chamamos o método 'Read' no data Reade, que irá fazer a leitura no banco de acordo com >>
-                                     // >> a informações que iremos passar.
-            {//                                       aqui colocamos o nome que queremos que seja lido na tabela do Db
-                int IdUsuario = Convert.ToInt32(dataReader["IDUsuario"]);//irá ler o IDUsuario da tabela de banco de dados
-                string nomeUsuario = Convert.ToString(dataReader["Nome"]);//irá ler nome na tabela e assim igual aos demais baixo..
-                string idadeUsuario = Convert.ToString(dataReader["Idade"]);//..
-                string endereçoUsuario = Convert.ToString(dataReader["Endereço"]);//..
-                //feito isso, podemos criar o nosso usuario.
-                Usuario usuario01 = new Usuario(IdUsuario,nomeUsuario, idadeUsuario, endereçoUsuario);
-
-                listaUsuario.Add(usuario01); //adicionamos o usuario01 que está recebendo a consulta do DataBase
-
-            };
-
-            //de acordo com o tipo de retorno do método, o valor a ser retornado deve ser uma lista (IEnumerable) do
-            //objeto Usuario (IEnumerable<Usuario>), portanto, a nossa listaUsuario se adegua a nosso tipo de retorno.
-
-            return listaUsuario;
-         }
-        //--------------------------------------------------------------------------------------------------------------\\
-
-        public void AtualizarUsuario()
+     /*   public void AtualizarUsuario()
         {
             //obter a conexão
 
@@ -137,7 +108,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
 
             try
             {
-                var connection = new Connection().ObterConexao();
+                var connection = new UserContext().ObterConexao();
                 connection.Open();
 
                 //definir o script do banco de dados
@@ -177,7 +148,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             
             try
             {
-                var connection = new Connection().ObterConexao();// chamar nosso método obter conexão
+                var connection = new UserContext().ObterConexao();// chamar nosso método obter conexão
                 connection.Open(); //para abrir nossa conexão
 
                 string sql = "DELETE FROM Usuarios WHERE IDUsuario = @IdUsuario";
@@ -210,5 +181,5 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         }
 
         //--------------------------------------------------------------------------------------------------------------\\
-    }
-}
+   */ }
+} 

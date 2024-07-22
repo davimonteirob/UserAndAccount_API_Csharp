@@ -8,16 +8,8 @@ using System.Threading.Tasks;
 
 namespace Connection_To_DataBaseCSharpe.Models
 {
-    public class Usuario
+    public class Usuarios
     {
-        Usuario[] usuarios = new Usuario[] { };
-        public Usuario(int id, string nome, string idade, string endereço)
-        {
-            IDUsuario = id;
-            Nome = nome;
-            Idade = idade;
-            Endereço = endereço;
-        }
         public int IDUsuario { get; set; }
         public string Nome { get; set; }
         public string Idade { get; set; }

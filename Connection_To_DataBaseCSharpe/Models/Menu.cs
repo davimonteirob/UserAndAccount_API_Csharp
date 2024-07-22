@@ -25,27 +25,35 @@ namespace Connection_To_DataBaseCSharpe.Models
             {
                 case 1:
                     //INSTANCIAMOS e logo chamamos o método: usamos o new para isso.
-                    new UsuarioDAL().AdicionarUsuario();
+                    new UsuarioDAL();
                     break;
                 case 2:
 
                     Console.Clear();
-                    var usuario01 = new UsuarioDAL().ListarUsuarios();
-                    Console.WriteLine("## USUARIOS ##");
-                    Console.WriteLine("\n");
-                    foreach (var item in usuario01)
+                    try
                     {
-                        Console.WriteLine($"Id: {item.IDUsuario}. Nome: {item.Nome}. Idade: {item.Idade}. Endereço: {item.Endereço}.");
-                        Console.WriteLine(" - ");
+                        var usuario01 = new UsuarioDAL().ListarUsuarios();
+                        Console.WriteLine("## USUARIOS ##");
+                        Console.WriteLine("\n");
+                        foreach (var item in usuario01)
+                        {
+                            Console.WriteLine($"Id: {item.IDUsuario}. Nome: {item.Nome}. Idade: {item.Idade}. Endereço: {item.Endereço}.");
+                            Console.WriteLine(" - ");
+                        }
                     }
+                    catch (Exception ex) 
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+
                     Thread.Sleep(18000);
                     Menu_();
                     break;
                 case 3:
-                    new UsuarioDAL().AtualizarUsuario();
+                    new UsuarioDAL();
                     break;
                 case 4:
-                    new UsuarioDAL().DeletarUsuario();
+                    new UsuarioDAL();
                     break;
 
                 case 0: break;
