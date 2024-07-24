@@ -25,7 +25,7 @@ namespace Connection_To_DataBaseCSharpe.Models
             {
                 case 1:
                     //INSTANCIAMOS e logo chamamos o método: usamos o new para isso.
-                    new UsuarioDAL();
+                    new UsuarioDAL().AdicionarUsuario();
                     break;
                 case 2:
 
@@ -37,7 +37,7 @@ namespace Connection_To_DataBaseCSharpe.Models
                         Console.WriteLine("\n");
                         foreach (var item in usuario01)
                         {
-                            Console.WriteLine($"Id: {item.IDUsuario}. Nome: {item.Nome}. Idade: {item.Idade}. Endereço: {item.Endereço}.");
+                            Console.WriteLine($"Id: {item.IdUsuario}. Nome: {item.Nome}. Idade: {item.Idade}. Endereço: {item.Endereço}.");
                             Console.WriteLine(" - ");
                         }
                     }
