@@ -120,6 +120,33 @@ namespace Connection_To_DataBaseCSharpe.DataBase
 
         }
 
+        public void AtualizarUsuario()
+        {
+            using var context = new UserContext();
+
+            Console.WriteLine("Digite o Id do usuario que deseja atualizar:");
+            int idUsuario = Convert.ToInt32(Console.ReadLine());
+
+            var usuario_ = context.Usuarios.Find(idUsuario);
+
+            if (usuario_ == null)
+            {
+                Console.WriteLine("Usuario não encontrado");
+            }
+            else
+            {
+                Console.WriteLine("Digite o nome que deseja atualizar");
+                string novoNome = Console.ReadLine();
+
+                usuario_.Nome = novoNome;
+
+                context.SaveChanges();
+
+                Console.WriteLine("\n");
+                Console.WriteLine("Nome adicionado");
+            }
+            
+        }
         //--------------------------------------------------------------------------------------------------------------\\
 
         /*   public void AtualizarUsuario()
