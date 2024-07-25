@@ -106,6 +106,10 @@ namespace Connection_To_DataBaseCSharpe.DataBase
                 Usuarios novoUsuario = new Usuarios(nome, idade, endereço);
 
                 context.Usuarios.Add(novoUsuario);
+                context.SaveChanges(); //salvar as mudanças no banco de dados.
+
+                Console.WriteLine("\n");
+                Console.WriteLine("Usuario Adicionado!");
             }
             catch (Exception ex) 
             {
