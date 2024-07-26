@@ -11,76 +11,23 @@ namespace Connection_To_DataBaseCSharpe.DataBase
 {
     internal class UsuarioDAL
     {
-        //Classe padrão de boas práticas para métodos que gerenciam o banco de dados.
-        //Basicamente, o DAL representa a estrutura de acesso aos dados, independente do tipo de banco utilizado,
-        //e o DAO é o objeto que representa o acesso a uma fonte de dados específica.
-        //--------------------------------------------------------------------------------------------------------------\\
-        /*       public void AdicionarUsuario()
-               {
+        //#########################     M É T O D O S    C O M    E N T I T Y  F R A M E W O R K   C O R E     #################################
 
-                   //Pegamos os dados dos usuarios:
-                   Console.Clear();
-                   Console.WriteLine("## ADICIONAR USUÁRIO ##");
-                   Console.WriteLine("\n");
+        // para evitar de ficar repetindo o mesmo código como: var context = new UserContext() ... Podemos criar um campo para todos 
+        //os métodos e assim estabelecer uma conexão sempre que chamar o método do objeto UsuarioDAL "EF".
 
-                   Console.WriteLine("Digite o Nome: ");
-                   string nome = Console.ReadLine();
-
-                   //correção do erro de conversão de idade string para int:
-
-                   Console.WriteLine("\nDigite a Idade: ");
-                   string idade = Console.ReadLine();
-
-                   Console.WriteLine("\n");
-                   Console.WriteLine("Digite o endereço");
-                   string endereço = Console.ReadLine();
-
-                   Usuario usuario01 = new Usuario(0, nome, idade, endereço);
-                   //------Adicionar Usuario ao DataBase------------------
-                   try
-                   {
-                       //agora precisamos dar um jeito de adicionar o usuario solicitado no método em nosso connection.
-                       var connection = new UserContext();
-
-                       using var connectionObter = connection.ObterConexao();
-                       connectionObter.Open();
-                       // a funçãp do @, declarar uma variável
-                       string query = "INSERT INTO Usuarios (Nome, Idade, Endereço) VALUES (@Nome, @Idade, @Endereço)";
-                       SqlCommand command = new SqlCommand(query, connectionObter);
-
-                       // dizemos para qual coluna da tabela (Nome = "@Nome") queremos adicionar o  usuario01.Nome
-                       command.Parameters.AddWithValue("@Nome", usuario01.Nome); // funciona como: var @Nome = usuario.Nome;
-                       command.Parameters.AddWithValue("@Idade", usuario01.Idade);
-                       command.Parameters.AddWithValue("@Endereço", usuario01.Endereço);
-
-                       //aqui recebemos a quantidade de linhas que foram adicionados na tabela.
-                       int retorno = command.ExecuteNonQuery();
-                       Console.WriteLine("\n");
-                       Console.WriteLine($"Quantidade linhas afetadas da Tabela: {retorno}Linha(s) Table - DataBase.");
-
-                       command.ExecuteNonQuery();
-                   }
-
-                   catch (Exception ex)
-                   {
-                       Console.WriteLine(ex.Message);
-                   }
-
-                   //--------------------------------------------------
-                   Thread.Sleep(3000);
-                   Console.WriteLine("Dados do usuario adicionado com Sucesso! Aguarde até que volte para o Menu.");
-
-                   Thread.Sleep(10000);
-                   new Menu().Menu_();
-
-               } */
-
-        //--------------------------------------------------------------------------------------------------------------\\
-
-        //#########################     M E T O D O S    C O M    E N T I T Y  F R A M E W O R K   C O R E       #################################
+        //criamos o campo e depois adicionamos no construtor do UsuarioDAL "EF"
+        private readonly UserContext context;
+        //adicionando no construtor.
+        public UsuarioDAL(UserContext context)
+        {
+            this.context = context;
+        }
+        //pronto, não precisamos mais criar conexão do context em cada método, pois criamos um campo para isso em nossa classe.
+               
         public IEnumerable<Usuarios> ListarUsuarios()
         {
-            using var context = new UserContext();
+  //          using var context = new UserContext();  << nao precisamos mais
 
             //informamos o que iremos fazer com o Usuarios digitando o "." Assim podemos dizer o que queremos retornar com a Tabela Usuarios.
             return context.Usuarios.ToList(); //estamos retornando da Tabela de Usuarios uma lista.
@@ -96,7 +43,6 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             //queremos instanciar a nossa UserContext(),
             try
             {
-                using var context = new UserContext();
 
                 Console.WriteLine("Digite seu Nome");
                 string nome = Console.ReadLine();
@@ -126,7 +72,6 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         {
             Console.Clear();
             Console.WriteLine("## ATUALIZAR USUARIO ##");
-            using var context = new UserContext();
 
             Console.WriteLine("Digite o Id do usuario que deseja atualizar:");
             int idUsuario = Convert.ToInt32(Console.ReadLine());
@@ -159,7 +104,6 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         {
             Console.Clear();
             Console.WriteLine("## REMOVER USUARIO ##");
-            using var context = new UserContext();
 
             Console.WriteLine("Digite o Id do usuario que deseja remover");
             int id = Convert.ToInt32(Console.ReadLine());
@@ -182,8 +126,10 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             new Menu().Menu_();
 
         }
-        //--------------------------------------------------------------------------------------------------------------\\
 
+
+        //--------------------------------------------------------------------------------------------------------------\\
+        // USANDO CONEXÃO ADO.NET
         /*   public void AtualizarUsuario()
            {
                //obter a conexão
