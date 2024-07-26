@@ -22,7 +22,7 @@ namespace Connection_To_DataBaseCSharpe.Models
             int opçãoSelecionada = Convert.ToInt32(Console.ReadLine());
 
             switch (opçãoSelecionada)
-            {
+            {// passe o parâmetro do construto para a Classe UsuarioDAL
                 case 1:
                     //INSTANCIAMOS e logo chamamos o método: usamos o new para isso.
                     new UsuarioDAL().AdicionarUsuario();
