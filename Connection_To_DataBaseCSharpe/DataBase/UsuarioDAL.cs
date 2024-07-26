@@ -76,6 +76,8 @@ namespace Connection_To_DataBaseCSharpe.DataBase
                } */
 
         //--------------------------------------------------------------------------------------------------------------\\
+
+        //#########################     M E T O D O S    C O M    E N T I T Y  F R A M E W O R K   C O R E       #################################
         public IEnumerable<Usuarios> ListarUsuarios()
         {
             using var context = new UserContext();
@@ -122,6 +124,8 @@ namespace Connection_To_DataBaseCSharpe.DataBase
 
         public void AtualizarUsuario()
         {
+            Console.Clear();
+            Console.WriteLine("## ATUALIZAR USUARIO ##");
             using var context = new UserContext();
 
             Console.WriteLine("Digite o Id do usuario que deseja atualizar:");
@@ -145,13 +149,37 @@ namespace Connection_To_DataBaseCSharpe.DataBase
                 Console.WriteLine("\n");
                 Console.WriteLine("Nome adicionado");
             }
-            
+
+            Thread.Sleep(10000);
+            new Menu().Menu_();
+
         }
 
         public void RemoverUsuario()
         {
+            Console.Clear();
+            Console.WriteLine("## REMOVER USUARIO ##");
             using var context = new UserContext();
 
+            Console.WriteLine("Digite o Id do usuario que deseja remover");
+            int id = Convert.ToInt32(Console.ReadLine());
+            var usuario = context.Usuarios.Find(id);
+            Console.WriteLine("\n");
+
+            if (usuario == null) 
+            {
+                Console.WriteLine("Usuario não encontrado");
+            }
+            else
+            {
+                context.Remove(usuario);
+                context.SaveChanges();
+
+                Console.WriteLine("Usuario removido com sucesso!");
+            }
+
+            Thread.Sleep(10000);
+            new Menu().Menu_();
 
         }
         //--------------------------------------------------------------------------------------------------------------\\

@@ -53,7 +53,7 @@ namespace Connection_To_DataBaseCSharpe.Models
                     new UsuarioDAL().AtualizarUsuario();
                     break;
                 case 4:
-                    new UsuarioDAL();
+                    new UsuarioDAL().RemoverUsuario();
                     break;
 
                 case 0: break;
