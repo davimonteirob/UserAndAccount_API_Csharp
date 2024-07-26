@@ -118,7 +118,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             Thread.Sleep(10000);
             new Menu().Menu_();
 
-        }
+        }   
 
         public void AtualizarUsuario()
         {
@@ -127,7 +127,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             Console.WriteLine("Digite o Id do usuario que deseja atualizar:");
             int idUsuario = Convert.ToInt32(Console.ReadLine());
 
-            var usuario_ = context.Usuarios.Find(idUsuario);
+            var usuario_ = context.Usuarios.Find(idUsuario); // para encontrar o id do usuario e armazenar na variável
 
             if (usuario_ == null)
             {
@@ -146,6 +146,13 @@ namespace Connection_To_DataBaseCSharpe.DataBase
                 Console.WriteLine("Nome adicionado");
             }
             
+        }
+
+        public void RemoverUsuario()
+        {
+            using var context = new UserContext();
+
+
         }
         //--------------------------------------------------------------------------------------------------------------\\
 

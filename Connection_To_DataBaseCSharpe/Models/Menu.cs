@@ -50,7 +50,7 @@ namespace Connection_To_DataBaseCSharpe.Models
                     Menu_();
                     break;
                 case 3:
-                    new UsuarioDAL();
+                    new UsuarioDAL().AtualizarUsuario();
                     break;
                 case 4:
                     new UsuarioDAL();
