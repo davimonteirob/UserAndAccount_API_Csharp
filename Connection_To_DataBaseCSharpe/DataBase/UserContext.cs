@@ -18,6 +18,8 @@ namespace Connection_To_DataBaseCSharpe.DataBase
          // Confira essas informações do string connection, como nome id e senha:
     {                                      //nome do servidor      Nome do Banco de Dados              Id do servidor e senha
 
+        //Mapear o nome da classe como o nome da tabela através do DbSet.
+
         public DbSet<Usuarios> Usuarios { get; set; } //nessa propriedade informamos ao entity a tabela Usuarios que queremos consultar.
         //assim, informamos a nossa tabela de Usuarios.
 

@@ -7,7 +7,6 @@ internal class Program
     // criar o método atualizar e deletar na classe DAL.
     private static void Main(string[] args)
     {
-
         // OBS: agr que ja estabelecemos a nossa conexão no próprio método, não precisamos mais colocá-la aqui.
         // assim conectamos o nosso projeto com o banco de dados, usando o adonet, idbConnection e SqlConnection
         //try
