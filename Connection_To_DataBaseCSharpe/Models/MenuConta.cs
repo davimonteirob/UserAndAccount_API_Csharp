@@ -25,16 +25,16 @@ namespace Connection_To_DataBaseCSharpe.Models
             switch (opçãoSelecionada)
             {
                 case 1:
-                    new ContaDAL(new UserContext()).AdicionarConta();
+                    new ContaDAL(new GerenciadorContext()).AdicionarConta();
                     break;
                 case 2:
-                    new ContaDAL(new UserContext()).InformacoesConta();
+                    new ContaDAL(new GerenciadorContext()).InformacoesConta();
                     break;
                 case 3:
-                    new ContaDAL(new UserContext()).AtualizarConta();
+                    new ContaDAL(new GerenciadorContext()).AtualizarConta();
                     break;
                 case 4:
-                    new ContaDAL(new UserContext()).RemoverConta();
+                    new ContaDAL(new GerenciadorContext()).RemoverConta();
                     break;
                 case 5:
                     new MenuUser().Menu_();

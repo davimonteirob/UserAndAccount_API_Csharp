@@ -12,14 +12,14 @@ namespace Connection_To_DataBaseCSharpe.Models
     {
         public Contas(string titular, int numero, decimal saldo) 
         {
-            Titular = titular;
+            Nome = titular;
             Numero = numero;
             Saldo = saldo;
         }
 
         [Key]
         public int Id { get; set; }
-        public string Titular { get; set; }
+        public string Nome { get; set; }
         public int Numero { get; set; }
         public decimal Saldo { get; set; }
     }

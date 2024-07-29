@@ -17,9 +17,9 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         //os métodos e assim estabelecer uma conexão sempre que chamar o método do objeto UsuarioDAL "EF".
 
         //criamos o campo e depois adicionamos no construtor do UsuarioDAL
-        private readonly UserContext context;
+        private readonly GerenciadorContext context;
         //adicionando no construtor.
-        public UsuarioDAL(UserContext context)
+        public UsuarioDAL(GerenciadorContext context)
         {
             this.context = context;
         }

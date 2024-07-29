@@ -23,7 +23,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
 
             foreach (var item in informacoesConta) 
             {
-                Console.WriteLine($"Id: {item.Id} - Titular da Conta: {item.Titular}. Saldo: {item.Saldo}. Número: {item.Numero}");
+                Console.WriteLine($"Id: {item.Id} - Titular da Conta: {item.Nome}. Saldo: {item.Saldo}. Número: {item.Numero}");
                 Console.WriteLine(" - ");
             }
 
@@ -42,8 +42,16 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             decimal saldo = Convert.ToDecimal(Console.ReadLine());
             var novaConta = new Contas(titular,numeroC,saldo);
 
-            context.Contas.Add(novaConta);
-            context.SaveChanges();
+            try
+            {
+                context.Contas.Add(novaConta);
+                context.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
 
             Console.WriteLine();
             Console.WriteLine("Conta adicionada!");
