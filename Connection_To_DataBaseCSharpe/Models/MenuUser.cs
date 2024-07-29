@@ -7,17 +7,18 @@ using System.Threading.Tasks;
 
 namespace Connection_To_DataBaseCSharpe.Models
 {
-    internal class Menu
+    internal class MenuUser
     {
         public void Menu_()
         {
             Console.Clear();
-            Console.WriteLine("##  M E N U  ## ");
+            Console.WriteLine("##  M E N U   U S U A R I O S  ## ");
             Console.WriteLine("\n");
             Console.WriteLine("# Digite 1 para Adicionar um Usuário");
             Console.WriteLine("# Digite 2 para Exibir os Usuários");
             Console.WriteLine("# Digite 3 para Atualizar o Usuário");
             Console.WriteLine("# Digite 4 para Deletar um Usuário");
+            Console.WriteLine("# Digite 5 para entrar no Menu de Contas");
             Console.WriteLine("# Digite 0 para sair");
             int opçãoSelecionada = Convert.ToInt32(Console.ReadLine());
 
@@ -54,6 +55,9 @@ namespace Connection_To_DataBaseCSharpe.Models
                     break;
                 case 4:
                     new UsuarioDAL(new UserContext()).RemoverUsuario();
+                    break;
+                case 5:
+                    new MenuConta().Menu();
                     break;
 
                 case 0: break;

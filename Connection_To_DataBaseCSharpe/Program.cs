@@ -33,6 +33,6 @@ internal class Program
 
         //o que vamos fazer agr é:
        
-        new Menu().Menu_();
+        new MenuUser().Menu_();
     }
 }

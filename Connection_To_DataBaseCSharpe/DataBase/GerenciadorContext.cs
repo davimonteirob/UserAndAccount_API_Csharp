@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 // Através dele é possível acessar dados de maneira consistente e ainda fazer a separação e a manipulação dos dados.
 namespace Connection_To_DataBaseCSharpe.DataBase
 {
-    internal class UserContext: DbContext
+    internal class GerenciadorContext: DbContext
  // voce também pode consultar em um site confiável um link string de connection confiável que ja funciona,
  // apenas altere as opções importantes como id senha e nome.
          // Confira essas informações do string connection, como nome id e senha:
@@ -22,6 +22,8 @@ namespace Connection_To_DataBaseCSharpe.DataBase
 
         public DbSet<Usuarios> Usuarios { get; set; } //nessa propriedade informamos ao entity a tabela Usuarios que queremos consultar.
         //assim, informamos a nossa tabela de Usuarios.
+
+        public DbSet<Contas> Contas { get; set; }
 
         private string connectionString = "Server=DESKTOP-KM1NEG8;Database=TestConnectionToDataBase;User Id=sa;Password=123456;\r\n";
 

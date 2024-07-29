@@ -64,7 +64,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
                 Console.WriteLine(ex.Message);
             }
             Thread.Sleep(10000);
-            new Menu().Menu_();
+            new MenuUser().Menu_();
 
         }   
 
@@ -96,7 +96,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             }
 
             Thread.Sleep(10000);
-            new Menu().Menu_();
+            new MenuUser().Menu_();
 
         }
 
@@ -123,7 +123,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             }
 
             Thread.Sleep(10000);
-            new Menu().Menu_();
+            new MenuUser().Menu_();
 
         }
 
