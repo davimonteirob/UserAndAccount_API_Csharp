@@ -25,14 +25,14 @@ namespace Connection_To_DataBaseCSharpe.Models
             {// passe o parâmetro do construto para a Classe UsuarioDAL
                 case 1:
                     //INSTANCIAMOS e logo chamamos o método: usamos o new para isso.
-                    new UsuarioDAL().AdicionarUsuario();
+                    new UsuarioDAL(new UserContext()).AdicionarUsuario();
                     break;
                 case 2:
 
                     Console.Clear();
                     try
                     {
-                        var usuario01 = new UsuarioDAL().ListarUsuarios();
+                        var usuario01 = new UsuarioDAL(new UserContext()).ListarUsuarios();
                         Console.WriteLine("## USUARIOS ##");
                         Console.WriteLine("\n");
                         foreach (var item in usuario01)
@@ -50,10 +50,10 @@ namespace Connection_To_DataBaseCSharpe.Models
                     Menu_();
                     break;
                 case 3:
-                    new UsuarioDAL().AtualizarUsuario();
+                    new UsuarioDAL(new UserContext()).AtualizarUsuario();
                     break;
                 case 4:
-                    new UsuarioDAL().RemoverUsuario();
+                    new UsuarioDAL(new UserContext()).RemoverUsuario();
                     break;
 
                 case 0: break;

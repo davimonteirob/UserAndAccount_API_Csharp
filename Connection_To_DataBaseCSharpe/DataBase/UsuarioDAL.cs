@@ -16,7 +16,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         // para evitar de ficar repetindo o mesmo código como: var context = new UserContext() ... Podemos criar um campo para todos 
         //os métodos e assim estabelecer uma conexão sempre que chamar o método do objeto UsuarioDAL "EF".
 
-        //criamos o campo e depois adicionamos no construtor do UsuarioDAL "EF"
+        //criamos o campo e depois adicionamos no construtor do UsuarioDAL
         private readonly UserContext context;
         //adicionando no construtor.
         public UsuarioDAL(UserContext context)
