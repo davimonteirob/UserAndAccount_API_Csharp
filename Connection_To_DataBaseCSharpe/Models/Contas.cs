@@ -10,15 +10,15 @@ namespace Connection_To_DataBaseCSharpe.Models
 {
     internal class Contas
     {
-        public Contas(string titular, int numero, decimal saldo) 
+        public Contas(string nome, int numero, decimal saldo) 
         {
-            Nome = titular;
+            Nome = nome;
             Numero = numero;
             Saldo = saldo;
         }
 
         [Key]
-        public int Id { get; set; }
+        public int IdConta { get; set; }
         public string Nome { get; set; }
         public int Numero { get; set; }
         public decimal Saldo { get; set; }

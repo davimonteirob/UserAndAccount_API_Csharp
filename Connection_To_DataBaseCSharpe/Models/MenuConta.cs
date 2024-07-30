@@ -28,7 +28,26 @@ namespace Connection_To_DataBaseCSharpe.Models
                     new ContaDAL(new GerenciadorContext()).AdicionarConta();
                     break;
                 case 2:
-                    new ContaDAL(new GerenciadorContext()).InformacoesConta();
+                    Console.Clear();
+                    Console.WriteLine("## LISTA DE CONTAS ##");
+                    Console.WriteLine();
+                    try
+                    {
+                        var info = new ContaDAL(new GerenciadorContext()).InformacoesConta();
+
+                        foreach (var item in info) 
+                        {
+                            Console.WriteLine($" {item.Nome}, {item.Numero}, Id: {item.IdConta}");
+                        }
+                    }
+                    catch (Exception ex) 
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    Thread.Sleep(10000);
+                    new MenuUser().Menu_();
+
+
                     break;
                 case 3:
                     new ContaDAL(new GerenciadorContext()).AtualizarConta();

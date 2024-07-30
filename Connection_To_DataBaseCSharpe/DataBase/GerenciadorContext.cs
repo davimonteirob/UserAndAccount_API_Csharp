@@ -35,6 +35,11 @@ namespace Connection_To_DataBaseCSharpe.DataBase
                 optionsBuilder.UseSqlServer(connectionString);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Contas>().HasKey(c => c.IdConta);
+        }
+
 
 
     }

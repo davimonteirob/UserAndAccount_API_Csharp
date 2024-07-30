@@ -16,16 +16,11 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             this.context = context;
         }
 
-        public void InformacoesConta()
+        public IEnumerable<Contas> InformacoesConta()
         {
-           
-           var informacoesConta =  context.Contas.ToList();
+                var informacoesConta = context.Contas.ToList();
 
-            foreach (var item in informacoesConta) 
-            {
-                Console.WriteLine($"Id: {item.Id} - Titular da Conta: {item.Nome}. Saldo: {item.Saldo}. Número: {item.Numero}");
-                Console.WriteLine(" - ");
-            }
+            return informacoesConta;
 
         }
 
@@ -35,12 +30,12 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             Console.WriteLine("## ADICIONAR CONTA ##");
             Console.WriteLine();
             Console.WriteLine("Digite o Titular da Conta");
-            string titular = Console.ReadLine();
+            string nome = Console.ReadLine();
             Console.WriteLine("Digite o Numero da Conta");
             int numeroC = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Digite o Saldo");
             decimal saldo = Convert.ToDecimal(Console.ReadLine());
-            var novaConta = new Contas(titular,numeroC,saldo);
+            var novaConta = new Contas(nome,numeroC,saldo);
 
             try
             {
@@ -56,7 +51,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             Console.WriteLine();
             Console.WriteLine("Conta adicionada!");
 
-            Thread.Sleep(1000);
+            Thread.Sleep(15000);
             new MenuConta().Menu();
         }
         
@@ -74,6 +69,20 @@ namespace Connection_To_DataBaseCSharpe.DataBase
 
         public void RemoverConta()
         {
+            Console.Clear();
+            try
+            {
+                string nome = "Clodovil";
+                var nomeDb = context.Contas.Find(nome);
+
+                context.Contas.Remove(nomeDb);
+                context.SaveChanges();
+                Console.WriteLine("removida com sucesso!");
+
+            } catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
 
         }
 
