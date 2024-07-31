@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Connection_To_DataBaseCSharpe.DataBase
 {
-    internal class UsuarioDAL
+    internal class UsuarioDAL: DAL<Usuarios>
     {
         //#########################     M É T O D O S    C O M    E N T I T Y  F R A M E W O R K   C O R E     #################################
 
@@ -25,7 +25,8 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         }
         //pronto, não precisamos mais criar conexão do context em cada método, pois criamos um campo para isso em nossa classe.
                
-        public IEnumerable<Usuarios> ListarUsuarios()
+        //sinalizamos com o "override" que estamos sobrescrevendo o método do DAL.
+        public override IEnumerable<Usuarios> Listar()
         {
   //          using var context = new UserContext();  << nao precisamos mais
 
@@ -35,7 +36,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             //Where(x=> x.IdUsuario == 2) << podemos usar esse Where para filtrar o que queremos mostrar, (id usuario deve ser igual a 2)
         }
 
-        public void AdicionarUsuario()
+        public override void Adicionar()
         {
             Console.Clear();
             Console.WriteLine("## ADICIONAR USUARIO ##");
@@ -68,7 +69,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
 
         }   
 
-        public void AtualizarUsuario()
+        public override void Atualizar()
         {
             Console.Clear();
             Console.WriteLine("## ATUALIZAR USUARIO ##");
@@ -100,7 +101,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
 
         }
 
-        public void RemoverUsuario()
+        public override void Remover()
         {
             Console.Clear();
             Console.WriteLine("## REMOVER USUARIO ##");

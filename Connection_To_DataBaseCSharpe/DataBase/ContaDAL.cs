@@ -6,25 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Connection_To_DataBaseCSharpe.DataBase
-{
-    internal class ContaDAL
+{ // a utilidade do generics se dá quando entedemos que estamos com duas classes DAL com os mesmos códigos, mesmos métodos
+  //se quisermos otimizar isso precisaremos da utilização do generics, genericsDAL
+    internal class ContaDAL:DAL<Contas>
     {
-        private readonly GerenciadorContext context;
+        //no nosso construtor do contaDAL, vai receber o contexto da classe DAL, usamos a :base que representa a superclasse (DAL) e dizemos
+        //que pegaremos o contexto de lá.
+        public ContaDAL(GerenciadorContext context) : base(context) { }
 
-        public ContaDAL(GerenciadorContext context) 
+        public override IEnumerable<Contas> Listar()
         {
-            this.context = context;
+                return context.Contas.ToList();
         }
 
-        public IEnumerable<Contas> InformacoesConta()
-        {
-                var informacoesConta = context.Contas.ToList();
-
-            return informacoesConta;
-
-        }
-
-        public void AdicionarConta()
+        public override void Adicionar()
         {
             Console.Clear();
             Console.WriteLine("## ADICIONAR CONTA ##");
@@ -55,7 +50,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             new MenuConta().Menu();
         }
         
-        public void AtualizarConta()
+        public override void Atualizar()
         {
             Console.Clear();
             Console.WriteLine("## ATUALIZAR CONTA ##");
@@ -82,11 +77,11 @@ namespace Connection_To_DataBaseCSharpe.DataBase
                 Console.WriteLine("Conta não encontrada.");
             }
 
-            Thread.Sleep(1000);
+            Thread.Sleep(15000);
             new MenuConta().Menu();
         }
 
-        public void RemoverConta()
+        public override void Remover()
         {
             Console.Clear();
             Console.WriteLine("## REMOVER CONTA  ##");
@@ -106,7 +101,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
                 Console.WriteLine(ex.Message);
             }
 
-            Thread.Sleep(1000);
+            Thread.Sleep(15000);
             new MenuConta().Menu();
 
         }

@@ -25,7 +25,7 @@ namespace Connection_To_DataBaseCSharpe.Models
             switch (opçãoSelecionada)
             {
                 case 1:
-                    new ContaDAL(new GerenciadorContext()).AdicionarConta();
+                    new ContaDAL(new GerenciadorContext()).Adicionar();
                     break;
                 case 2:
                     Console.Clear();
@@ -33,7 +33,7 @@ namespace Connection_To_DataBaseCSharpe.Models
                     Console.WriteLine();
                     try
                     {
-                        var info = new ContaDAL(new GerenciadorContext()).InformacoesConta();
+                        var info = new ContaDAL(new GerenciadorContext()).Listar();
 
                         foreach (var item in info) 
                         {
@@ -50,10 +50,10 @@ namespace Connection_To_DataBaseCSharpe.Models
 
                     break;
                 case 3:
-                    new ContaDAL(new GerenciadorContext()).AtualizarConta();
+                    new ContaDAL(new GerenciadorContext()).Atualizar();
                     break;
                 case 4:
-                    new ContaDAL(new GerenciadorContext()).RemoverConta();
+                    new ContaDAL(new GerenciadorContext()).Remover();
                     break;
                 case 5:
                     new MenuUser().Menu_();
