@@ -58,10 +58,29 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         public void AtualizarConta()
         {
             Console.Clear();
-            Console.WriteLine("## ADICIONAR CONTA ##");
+            Console.WriteLine("## ATUALIZAR CONTA ##");
             Console.WriteLine();
 
+            Console.WriteLine("Digite o Id da conta que deseja atualizar: ");
+            int id = Convert.ToInt32(Console.ReadLine());
+            if (id != null)
+            {
+                var conta = context.Contas.Find(id);
 
+                Console.WriteLine("Digite o novo Titular da conta:");
+                string novoNome = Console.ReadLine();
+                conta.Nome = novoNome;
+                context.SaveChanges();
+
+                Console.WriteLine();
+                Console.WriteLine("Nome adicionado!");
+
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("Conta não encontrada.");
+            }
 
             Thread.Sleep(1000);
             new MenuConta().Menu();
@@ -70,19 +89,25 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         public void RemoverConta()
         {
             Console.Clear();
+            Console.WriteLine("## REMOVER CONTA  ##");
             try
             {
-                string nome = "Clodovil";
-                var nomeDb = context.Contas.Find(nome);
+                Console.WriteLine("Digite um Id para remover a conta");
+                
+                int id = Convert.ToInt32(Console.ReadLine());
+                var conta = context.Contas.Find(id);
 
-                context.Contas.Remove(nomeDb);
+                context.Contas.Remove(conta);
                 context.SaveChanges();
-                Console.WriteLine("removida com sucesso!");
+                Console.WriteLine(" Conta removida com sucesso!");
 
             } catch (Exception ex) 
             {
                 Console.WriteLine(ex.Message);
             }
+
+            Thread.Sleep(1000);
+            new MenuConta().Menu();
 
         }
 

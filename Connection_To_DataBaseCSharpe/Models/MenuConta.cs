@@ -45,7 +45,7 @@ namespace Connection_To_DataBaseCSharpe.Models
                         Console.WriteLine(ex.Message);
                     }
                     Thread.Sleep(10000);
-                    new MenuUser().Menu_();
+                    new MenuConta().Menu();
 
 
                     break;
