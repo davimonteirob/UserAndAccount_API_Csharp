@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Connection_To_DataBaseCSharpe.DataBase
 { //criamos uma classe abstrata pois nao queremos criar nenhum objeto a partir da classe DAL
-    // O 'T' serve para dizermos que nossos métodos terão como retorno qualquer tipo. um tipo que será
+    // O 'T' serve para dizermos que nossos métodos terão como retorno qualquer tipo. um tipo que será definido quando sobrescrito.
     internal abstract class DAL<T> where T : class //dizemos que os nossos métodos usarão o T do tipo classe. Assim podemos dizer
         //que listar será usado uma classe para definir o banco do tipo classe que será manipulado no context.classe
-        //definido quando sobrescrito.
     {
         //DAL representa a nossa classe genericsDAL // métodos abstratos serve quando não queremos implementá-los aqui, mas em outra classe.
 
@@ -26,9 +25,23 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             // aqui queremos uma banco de dados genérico dps do context. Usamos o set<T>() para isso, pois dizemos que o tipo é genérico
             return context.Set<T>().ToList();
         } //também não é necessário as chaves de código quando é um método abstrato.
-        public abstract void Adicionar();
-        public abstract void Atualizar();
-        public abstract void Remover();
+        public void Adicionar(T dadosAdd)
+        {
+            context.Set<T>().Add(dadosAdd);
+        }
+        public T Atualizar(int id) 
+        {
+           var item = context.Set<T>().Find(id);
+            context.SaveChanges();
+
+            return item;
+
+        }
+        public void Remover(int id) 
+        {
+            context.Remove(id);
+            context.SaveChanges();
+        }
 
 
     }

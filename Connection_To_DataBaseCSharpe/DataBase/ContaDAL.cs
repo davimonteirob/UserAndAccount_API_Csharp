@@ -14,10 +14,6 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         //que pegaremos o contexto de lá.
         public ContaDAL(GerenciadorContext context) : base(context) { }
 
-        public override IEnumerable<Contas> Listar()
-        {
-                return context.Contas.ToList();
-        }
 
         public override void Adicionar()
         {
