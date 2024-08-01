@@ -25,7 +25,31 @@ namespace Connection_To_DataBaseCSharpe.Models
             switch (opçãoSelecionada)
             {
                 case 1:
-                    new ContaDAL(new GerenciadorContext()).Adicionar();
+                    Console.Clear();
+                    Console.WriteLine("## ADICIONAR CONTA ##");
+                    Console.WriteLine();
+                    Console.WriteLine("# Digite o Nome do Titular da conta");
+                    string nome = Console.ReadLine();
+                    Console.WriteLine("# Digite o Número da conta");
+                    int numero = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("# Digite o saldo da conta");
+                    decimal saldo = Convert.ToDecimal(Console.ReadLine());
+
+                    var novaConta = new Contas(nome, numero, saldo);
+
+                    try
+                    {
+                        new ContaDAL(new GerenciadorContext()).Adicionar(novaConta);
+                    }catch(Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+
+
+                    Console.WriteLine("Conta adicionada! ");
+                    Thread.Sleep(10000);
+                    new MenuConta().Menu();
+
                     break;
                 case 2:
                     Console.Clear();

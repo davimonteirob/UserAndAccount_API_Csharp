@@ -25,21 +25,22 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             // aqui queremos uma banco de dados genérico dps do context. Usamos o set<T>() para isso, pois dizemos que o tipo é genérico
             return context.Set<T>().ToList();
         } //também não é necessário as chaves de código quando é um método abstrato.
-        public void Adicionar(T dadosAdd)
+        public void Adicionar(T objeto) // aqui entra como parâmetro dados do tipo 'T' (classe nesse contexto)
         {
-            context.Set<T>().Add(dadosAdd);
-        }
-        public T Atualizar(int id) 
-        {
-           var item = context.Set<T>().Find(id);
+            context.Set<T>().Add(objeto); // aqui deve entrar um objeto instanciado do tipo correspondente a tabela do Db (Conta ou Usuario).
             context.SaveChanges();
-
-            return item;
-
+        }
+        public void  Atualizar(T objeto) 
+        {
+            context.Set<T>().Update(objeto); // aqui vc coloca a entidade modificada em Update. Lembre-se: modifique o objeto antes.
+            context.SaveChanges();           
         }
         public void Remover(int id) 
         {
-            context.Remove(id);
+            // no set dizemos que o tipo que iremos usar é definido como uma
+            // classe ( T ) que pode ser tanto Conta (representada como nossa tabela do Db no Entity) ou Usuario.
+            var conta = context.Set<T>().Find(id);
+            context.Set<T>().Remove(conta);
             context.SaveChanges();
         }
 
