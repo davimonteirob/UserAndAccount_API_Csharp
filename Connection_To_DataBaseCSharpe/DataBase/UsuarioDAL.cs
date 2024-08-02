@@ -33,8 +33,6 @@ namespace Connection_To_DataBaseCSharpe.DataBase
                Console.WriteLine("Novo Endereço para atualizar: ");
                string novoEndereco = Console.ReadLine();
 
-
-
                try
                {
                    var connection = new UserContext().ObterConexao();

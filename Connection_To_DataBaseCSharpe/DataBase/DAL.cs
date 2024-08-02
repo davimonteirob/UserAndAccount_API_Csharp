@@ -33,7 +33,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         public void  Atualizar(T objeto) 
         {
             context.Set<T>().Update(objeto); // aqui vc coloca a entidade modificada em Update. Lembre-se: modifique o objeto antes.
-            context.SaveChanges();           
+            context.SaveChanges();         
         }
         public void Remover(int id) 
         {
@@ -42,6 +42,14 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             var conta = context.Set<T>().Find(id);
             context.Set<T>().Remove(conta);
             context.SaveChanges();
+        }
+
+         // aqui temos um tipo que é uma função que nos permite fazer uma verificação.
+         //Assim podemos criar uma condição antes de recuperarmos qualquer dados no Db, permitindo assim recuperar apenas o que 
+         //foi satisfeito pela nossa condição.
+        public T RecuperarPor(Func<T,bool> condicao) 
+        {
+            return context.Set<T>().FirstOrDefault(condicao);
         }
 
 

@@ -74,7 +74,15 @@ namespace Connection_To_DataBaseCSharpe.Models
 
                     break;
                 case 3:
+                    Console.Clear();
+                    Console.WriteLine("## ATUALIZAR CONTAS ##");
+                    Console.WriteLine();
+
+                    var contaAtualizada = new Contas();
                     new ContaDAL(new GerenciadorContext()).Atualizar();
+
+                    Thread.Sleep(10000);
+                    new MenuConta().Menu();
                     break;
                 case 4:
                     new ContaDAL(new GerenciadorContext()).Remover();
