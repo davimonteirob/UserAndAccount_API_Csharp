@@ -49,6 +49,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
          //foi satisfeito pela nossa condição.
         public T RecuperarPor(Func<T,bool> condicao) 
         {
+            //queremos recuperar uma coluna do Db por um dado, seja nome, Id, saldo.. etc. 
             return context.Set<T>().FirstOrDefault(condicao);
         }
 
