@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 namespace Connection_To_DataBaseCSharpe.DataBase
 { //criamos uma classe abstrata pois nao queremos criar nenhum objeto a partir da classe DAL
     // O 'T' serve para dizermos que nossos métodos terão como retorno qualquer tipo. um tipo que será definido quando sobrescrito.
-    internal abstract class DAL<T> where T : class //dizemos que os nossos métodos usarão o T do tipo classe. Assim podemos dizer
+    internal class DAL<T> where T : class //dizemos que os nossos métodos usarão o T do tipo classe. Assim podemos dizer
         //que listar será usado uma classe para definir o banco do tipo classe que será manipulado no context.classe
     {
         //DAL representa a nossa classe genericsDAL // métodos abstratos serve quando não queremos implementá-los aqui, mas em outra classe.
 
         private readonly GerenciadorContext context;
 
-        protected DAL(GerenciadorContext context)
+        //colocamos public para que o construtor seja visível em nosso menu para instancia.
+        public DAL(GerenciadorContext context)
         {
             this.context = context;
         }
@@ -35,7 +36,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             context.Set<T>().Update(objeto); // aqui vc coloca a entidade modificada em Update. Lembre-se: modifique o objeto antes.
             context.SaveChanges();         
         }
-        public void Remover(int id) 
+        public void Remover(int id)
         {
             // no set dizemos que o tipo que iremos usar é definido como uma
             // classe ( T ) que pode ser tanto Conta (representada como nossa tabela do Db no Entity) ou Usuario.
@@ -44,13 +45,15 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             context.SaveChanges();
         }
 
-         // aqui temos um tipo que é uma função que nos permite fazer uma verificação.
-         //Assim podemos criar uma condição antes de recuperarmos qualquer dados no Db, permitindo assim recuperar apenas o que 
-         //foi satisfeito pela nossa condição.
+        //chamamos um tipo chamado Func, para criar a nossa condição. Dizemos qual tipo <> será avaliado pela condição
+        //e o tipo de retorno da validação, sendo verdadeira ou falsa, no nosso caso, bool (true or false), sendo true, o objeto do 
+        //tipo (T), poderá ser recuperado em nosso contexto.
+
+        //em condição, passamos a condição que queremos que seja verificada.
         public T RecuperarPor(Func<T,bool> condicao) 
         {
-            //queremos recuperar uma coluna do Db por um dado, seja nome, Id, saldo.. etc. 
             return context.Set<T>().FirstOrDefault(condicao);
+            //queremos retornar o primeiro objeto que passou pela verificação.
         }
 
 

@@ -19,7 +19,8 @@ namespace Connection_To_DataBaseCSharpe.Models
             Console.WriteLine("# Digite 2 para Exibir os Usuários");
             Console.WriteLine("# Digite 3 para Atualizar o Usuário");
             Console.WriteLine("# Digite 4 para Deletar um Usuário");
-            Console.WriteLine("# Digite 5 para entrar no Menu de Contas");
+            Console.WriteLine("# Digite 5 para Recuperar um Usuário");
+            Console.WriteLine("# Digite 6 para entrar no Menu de Contas");
             Console.WriteLine("# Digite 0 para sair");
             int opçãoSelecionada = Convert.ToInt32(Console.ReadLine());
 
@@ -37,7 +38,7 @@ namespace Connection_To_DataBaseCSharpe.Models
                     string endereco = Console.ReadLine();
 
                     var novoUsuario = new Usuarios(nome,idade, endereco);
-                    new UsuarioDAL(new GerenciadorContext()).Adicionar(novoUsuario);
+                    new DAL(new GerenciadorContext()).Adicionar(novoUsuario);
 
                     Console.WriteLine("Conta adicionada!..");
                     Thread.Sleep(18000);
@@ -106,6 +107,9 @@ namespace Connection_To_DataBaseCSharpe.Models
 
                     break;
                 case 5:
+                    
+                    break;
+                case 6:
                     new MenuConta().Menu();
                     break;
 
