@@ -78,14 +78,36 @@ namespace Connection_To_DataBaseCSharpe.Models
                     Console.WriteLine("## ATUALIZAR CONTAS ##");
                     Console.WriteLine();
 
-                    var contaAtualizada = new Contas();
-                    new ContaDAL(new GerenciadorContext()).Atualizar();
+                    Console.WriteLine("Digite o nome do titular da conta");
+                    nome = Console.ReadLine();
+                    Console.WriteLine("Digite o numero da conta");
+                    numero = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Digite o Saldo da conta");
+                    saldo = Convert.ToDecimal(Console.ReadLine());
+
+                    var contaAtualizada = new Contas(nome,numero,saldo);
+                    new ContaDAL(new GerenciadorContext()).Atualizar(contaAtualizada);
 
                     Thread.Sleep(10000);
                     new MenuConta().Menu();
                     break;
                 case 4:
-                    new ContaDAL(new GerenciadorContext()).Remover();
+                    Console.Clear();
+                    Console.WriteLine("## REMOVER CONTA ##");
+                    Console.WriteLine();
+
+                    Console.WriteLine("Digite o Id da conta que deseja remover");
+                    int id =  Convert.ToInt32(Console.ReadLine());
+
+                    if (id != null)
+                    {
+                        new ContaDAL(new GerenciadorContext()).Remover(id);
+                    }
+
+                    Console.WriteLine();
+                    Console.WriteLine("Conta removida!");
+                    Thread.Sleep(10000);
+                    new MenuConta().Menu();
                     break;
                 case 5:
                     new MenuUser().Menu_();
