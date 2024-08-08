@@ -38,7 +38,18 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Contas>().HasKey(c => c.IdConta);
+
+            // Configuração da relação entre Usuario e Conta
+            modelBuilder.Entity<Usuarios>()
+                .HasMany(u => u.Conta)// Um Usuario tem muitas Contas
+                .WithOne(c => c.Usuarios)// Cada Conta tem um Usuario
+                .HasForeignKey(c => c.IdConta);// Chave estrangeira em Conta
         }
+
+
+
+        
+
 
 
 

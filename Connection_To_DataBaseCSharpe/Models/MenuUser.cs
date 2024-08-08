@@ -38,7 +38,7 @@ namespace Connection_To_DataBaseCSharpe.Models
                     string endereco = Console.ReadLine();
 
                     var novoUsuario = new Usuarios(nome,idade, endereco);
-                    new DAL(new GerenciadorContext()).Adicionar(novoUsuario);
+                    new DAL<Usuarios>(new GerenciadorContext()).Adicionar(novoUsuario);
 
                     Console.WriteLine("Conta adicionada!..");
                     Thread.Sleep(18000);
@@ -51,7 +51,7 @@ namespace Connection_To_DataBaseCSharpe.Models
                     Console.WriteLine();
                     try
                     {
-                        var info = new UsuarioDAL(new GerenciadorContext()).Listar();
+                        var info = new DAL<Usuarios>(new GerenciadorContext()).Listar();
 
                         foreach (var item in info)
                         {
@@ -80,7 +80,7 @@ namespace Connection_To_DataBaseCSharpe.Models
 
                     var contaAtualizada = new Usuarios(nome, idade, endereco);
 
-                    new UsuarioDAL(new GerenciadorContext()).Atualizar(contaAtualizada);
+                    new DAL<Usuarios>(new GerenciadorContext()).Atualizar(contaAtualizada);
                     Menu_();
                     break;
                 case 4:
@@ -93,7 +93,7 @@ namespace Connection_To_DataBaseCSharpe.Models
 
                     if (id != null)
                     {
-                        new UsuarioDAL(new GerenciadorContext()).Remover(id);
+                        new DAL<Usuarios>(new GerenciadorContext()).Remover(id);
                     }else
                     {
                         Console.WriteLine("Id não encontrado");
@@ -103,8 +103,6 @@ namespace Connection_To_DataBaseCSharpe.Models
                     Console.WriteLine(" Usuario removido!");
                     Thread.Sleep(10000);
                     Menu_();
-
-
                     break;
                 case 5:
                     

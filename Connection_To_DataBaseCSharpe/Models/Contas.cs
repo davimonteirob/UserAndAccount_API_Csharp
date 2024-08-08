@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Connection_To_DataBaseCSharpe.Models
 {
-    internal class Contas
+    public class Contas
     {
         public Contas(string nome, int numero, decimal saldo) 
         {
@@ -22,5 +22,11 @@ namespace Connection_To_DataBaseCSharpe.Models
         public string Nome { get; set; }
         public int Numero { get; set; }
         public decimal Saldo { get; set; }
+
+        // Chave estrangeira para Usuario
+        public int IdUsuario { get; set; }
+
+        // Propriedade de navegação para a relação com Usuario
+        public Usuarios Usuarios { get; set; }
     }
 }

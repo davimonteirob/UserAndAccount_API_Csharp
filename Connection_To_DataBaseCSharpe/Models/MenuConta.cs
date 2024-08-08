@@ -18,7 +18,8 @@ namespace Connection_To_DataBaseCSharpe.Models
             Console.WriteLine("# Digite 2 para Exibir as Contas");
             Console.WriteLine("# Digite 3 para Atualizar a Conta");
             Console.WriteLine("# Digite 4 para Deletar uma Conta");
-            Console.WriteLine("# Digite 5 para Voltar ao Menu de Usuarios");
+            Console.WriteLine("# Digite 5 para Recuperar uma Conta");
+            Console.WriteLine("# Digite 6 para Voltar ao Menu de Usuarios");
             Console.WriteLine("# Digite 0 para sair");
             int opçãoSelecionada = Convert.ToInt32(Console.ReadLine());
 
@@ -39,7 +40,7 @@ namespace Connection_To_DataBaseCSharpe.Models
 
                     try
                     {
-                        new ContaDAL(new GerenciadorContext()).Adicionar(novaConta);
+                        new DAL<Contas>(new GerenciadorContext()).Adicionar(novaConta);
                     }catch(Exception ex)
                     {
                         Console.WriteLine(ex.Message);
@@ -57,7 +58,7 @@ namespace Connection_To_DataBaseCSharpe.Models
                     Console.WriteLine();
                     try
                     {
-                        var info = new ContaDAL(new GerenciadorContext()).Listar();
+                        var info = new DAL<Contas>(new GerenciadorContext()).Listar();
 
                         foreach (var item in info) 
                         {
@@ -86,7 +87,7 @@ namespace Connection_To_DataBaseCSharpe.Models
                     saldo = Convert.ToDecimal(Console.ReadLine());
 
                     var contaAtualizada = new Contas(nome,numero,saldo);
-                    new ContaDAL(new GerenciadorContext()).Atualizar(contaAtualizada);
+                    new DAL<Contas>(new GerenciadorContext()).Atualizar(contaAtualizada);
 
                     Thread.Sleep(10000);
                     new MenuConta().Menu();
@@ -101,7 +102,7 @@ namespace Connection_To_DataBaseCSharpe.Models
 
                     if (id != null)
                     {
-                        new ContaDAL(new GerenciadorContext()).Remover(id);
+                        new DAL<Contas>(new GerenciadorContext()).Remover(id);
                     }
 
                     Console.WriteLine();
@@ -110,6 +111,8 @@ namespace Connection_To_DataBaseCSharpe.Models
                     new MenuConta().Menu();
                     break;
                 case 5:
+                    break;
+                case 6:
                     new MenuUser().Menu_();
                     break;
 
