@@ -46,6 +46,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
                 .HasForeignKey(c => c.IdUsuario)// Chave estrangeira em Conta
                 .OnDelete(DeleteBehavior.Cascade); // Configura o comportamento de exclusão
         }
+        // ATIVIDADE ##
         //Após definir as entidades e configurar o DbContext,
         //você deve criar e aplicar as migrations para atualizar o banco de dados com as novas
         //tabelas e relacionamentos.
