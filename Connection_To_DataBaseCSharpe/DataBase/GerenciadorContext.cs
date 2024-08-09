@@ -43,12 +43,15 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             modelBuilder.Entity<Usuarios>()
                 .HasMany(u => u.Conta)// Um Usuario tem muitas Contas
                 .WithOne(c => c.Usuarios)// Cada Conta tem um Usuario
-                .HasForeignKey(c => c.IdConta);// Chave estrangeira em Conta
+                .HasForeignKey(c => c.IdUsuario)// Chave estrangeira em Conta
+                .OnDelete(DeleteBehavior.Cascade); // Configura o comportamento de exclusão
         }
+        //Após definir as entidades e configurar o DbContext,
+        //você deve criar e aplicar as migrations para atualizar o banco de dados com as novas tabelas e relacionamentos.
 
 
 
-        
+
 
 
 
