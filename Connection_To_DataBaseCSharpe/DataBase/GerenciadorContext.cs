@@ -47,7 +47,8 @@ namespace Connection_To_DataBaseCSharpe.DataBase
                 .OnDelete(DeleteBehavior.Cascade); // Configura o comportamento de exclusão
         }
         //Após definir as entidades e configurar o DbContext,
-        //você deve criar e aplicar as migrations para atualizar o banco de dados com as novas tabelas e relacionamentos.
+        //você deve criar e aplicar as migrations para atualizar o banco de dados com as novas
+        //tabelas e relacionamentos.
 
 
 
