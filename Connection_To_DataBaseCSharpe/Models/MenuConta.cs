@@ -54,10 +54,11 @@ namespace Connection_To_DataBaseCSharpe.Models
                     break;
                 case 2:
                     Console.Clear();
-                    Console.WriteLine("## LISTA DE CONTAS ##");
+                    Console.WriteLine("## LISTAR CONTAS ##");
                     Console.WriteLine();
                     try
                     {
+                        
                         var info = new DAL<Contas>(new GerenciadorContext()).Listar();
 
                         foreach (var item in info) 

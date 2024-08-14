@@ -24,7 +24,12 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         public IEnumerable<T> Listar() 
         {
             // aqui queremos uma banco de dados genérico dps do context. Usamos o set<T>() para isso, pois dizemos que o tipo é genérico
-            return context.Set<T>().ToList();
+            var dbSet = context.Set<T>();
+            if (dbSet == null)
+            {
+                throw new InvalidOperationException("O DbSet é nulo");
+            }
+            return dbSet.ToList();
         } //também não é necessário as chaves de código quando é um método abstrato.
         public void Adicionar(T objeto) // aqui entra como parâmetro dados do tipo 'T' (classe nesse contexto)
         {
