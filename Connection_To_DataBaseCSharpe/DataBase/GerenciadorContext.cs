@@ -53,6 +53,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         //você deve criar e aplicar as migrations para atualizar o banco de dados com as novas
         //tabelas e relacionamentos.
 
+        //criamos a migration mas ainda não atualizamos no banco de dados.
 
 
 
