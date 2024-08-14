@@ -47,8 +47,6 @@ namespace Connection_To_DataBaseCSharpe.DataBase
                 .OnDelete(DeleteBehavior.Cascade); // Configura o comportamento de exclusão
 
             modelBuilder.Entity<Contas>().Property(c => c.Saldo).HasPrecision(18,2); //// Ajuste a precisão e a escala conforme necessário
-
-
         }
         // ATIVIDADE ##
         //Após definir as entidades e configurar o DbContext,
