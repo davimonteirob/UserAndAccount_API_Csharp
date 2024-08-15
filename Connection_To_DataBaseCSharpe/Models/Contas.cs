@@ -24,5 +24,13 @@ namespace Connection_To_DataBaseCSharpe.Models
         public decimal Saldo { get; set; }
 
         public int PIN { get; set; }
+
+        // Chave estrangeira
+        public int UsuarioId { get; set; }
+        // Propriedade de navegação
+        public Usuarios Usuarios { get; set; }
+
+        //criamos as propriedades importantes para relação, agora precisamos definir essa relação no DbContext
+        //depois precisamos salvar isso criando uma nova migrations e depois atualizando-a para assim manipular a relação com dados.
     }
 }
