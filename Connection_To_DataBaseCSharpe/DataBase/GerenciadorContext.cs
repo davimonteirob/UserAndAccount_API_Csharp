@@ -39,13 +39,6 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         {
             modelBuilder.Entity<Contas>().HasKey(c => c.IdConta);
 
-            // Configuração da relação entre Usuario e Conta
-            modelBuilder.Entity<Usuarios>()
-                .HasMany(u => u.Conta)// Um Usuario tem muitas Contas
-                .WithOne(c => c.Usuarios)// Cada Conta tem um Usuario
-                .HasForeignKey(c => c.IdUsuario)// Chave estrangeira em Conta
-                .OnDelete(DeleteBehavior.Cascade); // Configura o comportamento de exclusão
-
             modelBuilder.Entity<Contas>().Property(c => c.Saldo).HasPrecision(18,2); //// Ajuste a precisão e a escala conforme necessário
         }
         // ATIVIDADE ##
