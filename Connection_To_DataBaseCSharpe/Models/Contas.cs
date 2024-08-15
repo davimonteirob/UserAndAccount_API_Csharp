@@ -22,5 +22,7 @@ namespace Connection_To_DataBaseCSharpe.Models
         public string Nome { get; set; }
         public int Numero { get; set; }
         public decimal Saldo { get; set; }
+
+        public int PIN { get; set; }
     }
 }
