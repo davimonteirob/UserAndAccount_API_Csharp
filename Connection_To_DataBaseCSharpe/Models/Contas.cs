@@ -27,7 +27,7 @@ namespace Connection_To_DataBaseCSharpe.Models
 
         // Chave estrangeira
         public int UsuarioId { get; set; }
-        // Propriedade de navegação
+        // Propriedade de navegação// Navegação para a entidade Usuario
         public Usuarios Usuarios { get; set; }
 
         //criamos as propriedades importantes para relação, agora precisamos definir essa relação no DbContext
