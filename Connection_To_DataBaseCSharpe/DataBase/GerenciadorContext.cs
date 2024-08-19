@@ -16,7 +16,7 @@ namespace Connection_To_DataBaseCSharpe.DataBase
 
         public DbSet<Contas> Contas { get; set; }
 
-        private string connectionString = "Server=DESKTOP-KM1NEG8;Database=TestConnectionToDataBaseV9;User Id=sa;Password=123456;TrustServerCertificate=True;\r\n";
+        private string connectionString = "Server=DESKTOP-KNM3SP8;Database=TestConnectionToDataBaseV11;User Id=sa;Password=123456;TrustServerCertificate=True;\r\n";
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
