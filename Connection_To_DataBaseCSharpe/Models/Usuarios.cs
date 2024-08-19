@@ -26,9 +26,6 @@ namespace Connection_To_DataBaseCSharpe.Models
         public string Nome { get; set; }
         public string Idade { get; set; }
         public string Endereço { get; set; }
-
-        // Propriedade de navegação// Relação um-para-muitos
-        public ICollection<Contas> Contas { get; set; }
                    
     }
 }
