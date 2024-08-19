@@ -26,14 +26,7 @@ namespace Connection_To_DataBaseCSharpe.Models
         public string Nome { get; set; }
         public string Idade { get; set; }
         public string Endereço { get; set; }
-<<<<<<< HEAD
-                   
-=======
-
-        //pronto, agr é só testar a relação com usuario e conta
-        public ICollection<Contas> Contas  { get; set; }
 
 
->>>>>>> 6e0b2f5fc0d27d20561eaa88a35c84f3877bd0ad
     }
 }
