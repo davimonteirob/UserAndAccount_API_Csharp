@@ -30,6 +30,9 @@ namespace Connection_To_DataBaseCSharpe.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdConta"));
 
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -37,19 +40,16 @@ namespace Connection_To_DataBaseCSharpe.Migrations
                     b.Property<int>("Numero")
                         .HasColumnType("int");
 
-                    b.Property<int>("PIN")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Saldo")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("UsuariosIdUsuario")
+                    b.Property<int?>("UsuarioIdUsuario")
                         .HasColumnType("int");
 
                     b.HasKey("IdConta");
 
-                    b.HasIndex("UsuariosIdUsuario");
+                    b.HasIndex("UsuarioIdUsuario");
 
                     b.ToTable("Contas");
                 });
@@ -81,16 +81,16 @@ namespace Connection_To_DataBaseCSharpe.Migrations
 
             modelBuilder.Entity("Connection_To_DataBaseCSharpe.Models.Contas", b =>
                 {
-                    b.HasOne("Connection_To_DataBaseCSharpe.Models.Usuarios", "Usuarios")
-                        .WithMany("Contas")
-                        .HasForeignKey("UsuariosIdUsuario");
+                    b.HasOne("Connection_To_DataBaseCSharpe.Models.Usuarios", "Usuario")
+                        .WithMany("Conta")
+                        .HasForeignKey("UsuarioIdUsuario");
 
-                    b.Navigation("Usuarios");
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Connection_To_DataBaseCSharpe.Models.Usuarios", b =>
                 {
-                    b.Navigation("Contas");
+                    b.Navigation("Conta");
                 });
 #pragma warning restore 612, 618
         }

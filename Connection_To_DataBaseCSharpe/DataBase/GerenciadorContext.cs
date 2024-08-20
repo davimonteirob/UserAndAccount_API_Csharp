@@ -27,7 +27,9 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         {
             modelBuilder.Entity<Contas>().HasKey(c => c.IdConta);
 
+
             modelBuilder.Entity<Contas>().Property(c => c.Saldo).HasPrecision(18,2); 
         }
+
     }
 }
