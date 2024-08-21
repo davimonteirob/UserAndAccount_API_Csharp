@@ -28,19 +28,19 @@ namespace Connection_To_DataBaseCSharpe.Models
             {// passe o parâmetro do construto para a Classe UsuarioDAL
                 case 1:
                     Console.Clear();
-                    Console.WriteLine("## ADICIONAR CONTA ##");
+                    Console.WriteLine("## ADICIONAR USUARIO ##");
                     Console.WriteLine();
-                    Console.WriteLine("# Digite o Nome do Titular da conta");
+                    Console.WriteLine("# Digite o Nome");
                     string nome = Console.ReadLine();
-                    Console.WriteLine("# Digite o Número da conta");
+                    Console.WriteLine("# Digite a Idade");
                     string idade = Console.ReadLine();
-                    Console.WriteLine("# Digite o saldo da conta");
+                    Console.WriteLine("# Digite o EWndereço");
                     string endereco = Console.ReadLine();
 
                     var novoUsuario = new Usuarios(nome,idade, endereco);
                     new DAL<Usuarios>(new GerenciadorContext()).Adicionar(novoUsuario);
 
-                    Console.WriteLine("Conta adicionada!..");
+                    Console.WriteLine("Usuario Adicionado!..");
                     Thread.Sleep(18000);
                     Menu_();
 
@@ -68,14 +68,14 @@ namespace Connection_To_DataBaseCSharpe.Models
                     break;
                 case 3:
                     Console.Clear();
-                    Console.WriteLine("## ATUALIZAR CONTAS ##");
+                    Console.WriteLine("## ATUALIZAR USUARIO##");
                     Console.WriteLine();
 
-                    Console.WriteLine("Digite o nome do titular da conta");
+                    Console.WriteLine("Digite o nome do Usuario");
                     nome = Console.ReadLine();
-                    Console.WriteLine("Digite o numero da conta");
+                    Console.WriteLine("Digite a idade");
                     idade = Console.ReadLine();
-                    Console.WriteLine("Digite o Saldo da conta");
+                    Console.WriteLine("Digite o endereço");
                     endereco = Console.ReadLine();
 
                     var contaAtualizada = new Usuarios(nome, idade, endereco);

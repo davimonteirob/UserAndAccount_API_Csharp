@@ -19,16 +19,17 @@ namespace Connection_To_DataBaseCSharpe.DataBase
         private string connectionString = "Server=DESKTOP-KM1NEG8;Database=TestConnectionToDataBaseV9;User Id=sa;Password=123456;TrustServerCertificate=True;\r\n";
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
         {
-                optionsBuilder.UseSqlServer(connectionString);
+                optionsBuilder
+                .UseSqlServer(connectionString)
+                .UseLazyLoadingProxies(); //permite usar o Proxies
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Contas>().HasKey(c => c.IdConta);
-
-
-            modelBuilder.Entity<Contas>().Property(c => c.Saldo).HasPrecision(18,2); 
+            modelBuilder.Entity<Contas>().Property(c => c.Saldo).HasPrecision(18,2);
         }
 
     }

@@ -47,6 +47,9 @@ namespace Connection_To_DataBaseCSharpe.DataBase
             return context.Set<T>().FirstOrDefault(condicao);
         }
 
+        //criar um método genérico que exiba o relacionamento entre Usuarios e Contas
+        
+
 
     }
 }

@@ -27,7 +27,7 @@ namespace Connection_To_DataBaseCSharpe.Models
         public string Idade { get; set; }
         public string Endereço { get; set; }
 
-        public  ICollection<Contas> Contas { get; set; }
+        public  virtual ICollection<Contas> Contas { get; set; }
 
     }
 }
