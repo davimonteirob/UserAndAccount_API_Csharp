@@ -30,9 +30,6 @@ namespace Connection_To_DataBaseCSharpe.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdConta"));
 
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -44,12 +41,12 @@ namespace Connection_To_DataBaseCSharpe.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("UsuarioIdUsuario")
+                    b.Property<int?>("UsuariosIdUsuario")
                         .HasColumnType("int");
 
                     b.HasKey("IdConta");
 
-                    b.HasIndex("UsuarioIdUsuario");
+                    b.HasIndex("UsuariosIdUsuario");
 
                     b.ToTable("Contas");
                 });
@@ -81,16 +78,16 @@ namespace Connection_To_DataBaseCSharpe.Migrations
 
             modelBuilder.Entity("Connection_To_DataBaseCSharpe.Models.Contas", b =>
                 {
-                    b.HasOne("Connection_To_DataBaseCSharpe.Models.Usuarios", "Usuario")
-                        .WithMany("Conta")
-                        .HasForeignKey("UsuarioIdUsuario");
+                    b.HasOne("Connection_To_DataBaseCSharpe.Models.Usuarios", "Usuarios")
+                        .WithMany("Contas")
+                        .HasForeignKey("UsuariosIdUsuario");
 
-                    b.Navigation("Usuario");
+                    b.Navigation("Usuarios");
                 });
 
             modelBuilder.Entity("Connection_To_DataBaseCSharpe.Models.Usuarios", b =>
                 {
-                    b.Navigation("Conta");
+                    b.Navigation("Contas");
                 });
 #pragma warning restore 612, 618
         }
