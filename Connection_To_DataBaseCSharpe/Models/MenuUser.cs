@@ -35,7 +35,7 @@ namespace Connection_To_DataBaseCSharpe.Models
             switch (opçãoSelecionada)
             {// passe o parâmetro do construto para a Classe UsuarioDAL
                 case 1:
-                    
+                    AdicionarAssociacao();
 
                     break;
                 case 2:
@@ -154,10 +154,6 @@ namespace Connection_To_DataBaseCSharpe.Models
 
             Console.WriteLine("Conta adicionada! ");
             Thread.Sleep(10000);
-            new MenuConta().Menu();
-
-            Console.WriteLine("Usuario Adicionado!..");
-            Thread.Sleep(18000);
             Menu_();
         }
     }
