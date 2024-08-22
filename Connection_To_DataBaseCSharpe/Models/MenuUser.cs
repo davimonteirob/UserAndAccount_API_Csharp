@@ -4,12 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Connection_To_DataBaseCSharpe.Models
 {
     internal class MenuUser
     {
+        private readonly GerenciadorContext _context;
+
+        public MenuUser(GerenciadorContext context)
+        {
+            this._context = context;
+        }
+       
         public void Menu_()
         {
             Console.Clear();
@@ -27,22 +35,7 @@ namespace Connection_To_DataBaseCSharpe.Models
             switch (opçãoSelecionada)
             {// passe o parâmetro do construto para a Classe UsuarioDAL
                 case 1:
-                    Console.Clear();
-                    Console.WriteLine("## ADICIONAR USUARIO ##");
-                    Console.WriteLine();
-                    Console.WriteLine("# Digite o Nome");
-                    string nome = Console.ReadLine();
-                    Console.WriteLine("# Digite a Idade");
-                    string idade = Console.ReadLine();
-                    Console.WriteLine("# Digite o EWndereço");
-                    string endereco = Console.ReadLine();
-
-                    var novoUsuario = new Usuarios(nome,idade, endereco);
-                    new DAL<Usuarios>(new GerenciadorContext()).Adicionar(novoUsuario);
-
-                    Console.WriteLine("Usuario Adicionado!..");
-                    Thread.Sleep(18000);
-                    Menu_();
+                    
 
                     break;
                 case 2:
@@ -68,20 +61,19 @@ namespace Connection_To_DataBaseCSharpe.Models
                     break;
                 case 3:
                     Console.Clear();
-                    Console.WriteLine("## ATUALIZAR USUARIO##");
+                    Console.WriteLine("## ATUALIZAR USUARIO ##");
                     Console.WriteLine();
 
                     Console.WriteLine("Digite o nome do Usuario");
-                    nome = Console.ReadLine();
+                    string nome = Console.ReadLine();
                     Console.WriteLine("Digite a idade");
-                    idade = Console.ReadLine();
+                    string idade = Console.ReadLine();
                     Console.WriteLine("Digite o endereço");
-                    endereco = Console.ReadLine();
+                    string endereco = Console.ReadLine();
 
                     var contaAtualizada = new Usuarios(nome, idade, endereco);
-
                     new DAL<Usuarios>(new GerenciadorContext()).Atualizar(contaAtualizada);
-                    Menu_();
+
                     break;
                 case 4:
                     Console.Clear();
@@ -113,6 +105,60 @@ namespace Connection_To_DataBaseCSharpe.Models
 
                 case 0: break;
             }
+        }
+        public void AdicionarAssociacao()
+        {
+            Console.Clear();
+            Console.WriteLine("## ADICIONAR USUARIO ##");
+            Console.WriteLine();
+            Console.WriteLine("# Digite o Nome");
+            string nome = Console.ReadLine();
+            Console.WriteLine("# Digite a Idade");
+            string idade = Console.ReadLine();
+            Console.WriteLine("# Digite o EWndereço");
+            string endereco = Console.ReadLine();
+
+            var novoUsuario = new Usuarios(nome, idade, endereco);
+            new DAL<Usuarios>(new GerenciadorContext()).Adicionar(novoUsuario);
+
+            Console.WriteLine("Usuario Adicionado!..");
+            Thread.Sleep(18000);
+
+            Console.Clear();
+            Console.WriteLine("## ADICIONAR CONTA ASSOCIADA AO USUARIO CRIADO ##");
+            Console.WriteLine();
+            Console.WriteLine("# Digite o Nome do Titular da conta");
+            string _nome = Console.ReadLine();
+            Console.WriteLine("# Digite o Número da conta");
+            int numero = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("# Digite o saldo da conta");
+            decimal saldo = Convert.ToDecimal(Console.ReadLine());
+
+
+            try
+            {
+                var novaConta = new Contas(_nome, numero, saldo) 
+                { 
+                    IdUsuario = novoUsuario.IdUsuario // Associa a conta ao usuário
+                };
+                
+                _context.Add(novaConta);
+                _context.SaveChanges();
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
+            Console.WriteLine("Conta adicionada! ");
+            Thread.Sleep(10000);
+            new MenuConta().Menu();
+
+            Console.WriteLine("Usuario Adicionado!..");
+            Thread.Sleep(18000);
+            Menu_();
         }
     }
 }

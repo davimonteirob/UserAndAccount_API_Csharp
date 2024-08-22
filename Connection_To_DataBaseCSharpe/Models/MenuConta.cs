@@ -26,31 +26,7 @@ namespace Connection_To_DataBaseCSharpe.Models
             switch (opçãoSelecionada)
             {
                 case 1:
-                    Console.Clear();
-                    Console.WriteLine("## ADICIONAR CONTA ##");
-                    Console.WriteLine();
-                    Console.WriteLine("# Digite o Nome do Titular da conta");
-                    string nome = Console.ReadLine();
-                    Console.WriteLine("# Digite o Número da conta");
-                    int numero = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("# Digite o saldo da conta");
-                    decimal saldo = Convert.ToDecimal(Console.ReadLine());
-
-                    var novaConta = new Contas(nome, numero, saldo);
-
-                    try
-                    {
-                        new DAL<Contas>(new GerenciadorContext()).Adicionar(novaConta);
-                    }catch(Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-
-
-                    Console.WriteLine("Conta adicionada! ");
-                    Thread.Sleep(10000);
-                    new MenuConta().Menu();
-
+                 
                     break;
                 case 2:
                     Console.Clear();
@@ -81,11 +57,11 @@ namespace Connection_To_DataBaseCSharpe.Models
                     Console.WriteLine();
 
                     Console.WriteLine("Digite o nome do titular da conta");
-                    nome = Console.ReadLine();
+                    string nome = Console.ReadLine();
                     Console.WriteLine("Digite o numero da conta");
-                    numero = Convert.ToInt32(Console.ReadLine());
+                    int numero = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Digite o Saldo da conta");
-                    saldo = Convert.ToDecimal(Console.ReadLine());
+                    decimal saldo = Convert.ToDecimal(Console.ReadLine());
 
                     var contaAtualizada = new Contas(nome,numero,saldo);
                     new DAL<Contas>(new GerenciadorContext()).Atualizar(contaAtualizada);
@@ -114,7 +90,7 @@ namespace Connection_To_DataBaseCSharpe.Models
                 case 5:
                     break;
                 case 6:
-                    new MenuUser().Menu_();
+                    new MenuUser(new GerenciadorContext()).Menu_();
                     break;
 
                 case 0: break;

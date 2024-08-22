@@ -33,6 +33,6 @@ internal class Program
 
         //o que vamos fazer agr é:
        
-        new MenuUser().Menu_();
+        new MenuUser(new GerenciadorContext()).Menu_();
     }
 }

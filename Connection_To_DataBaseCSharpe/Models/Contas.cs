@@ -23,6 +23,7 @@ namespace Connection_To_DataBaseCSharpe.Models
         public int Numero { get; set; }
         public decimal Saldo { get; set; }
 
+        public int IdUsuario { get; set; }
         public virtual Usuarios? Usuarios { get; set; }
 
         //agora que ja coneseguimos aplicar nossa migration no banco de dados, devemos criar tambem uma migrations
