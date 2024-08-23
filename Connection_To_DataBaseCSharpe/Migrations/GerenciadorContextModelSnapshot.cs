@@ -54,7 +54,7 @@ namespace Connection_To_DataBaseCSharpe.Migrations
 
                     b.HasIndex("UsuariosIdUsuario");
 
-                    b.ToTable("Contas");
+                    b.ToTable("Contas", (string)null);
                 });
 
             modelBuilder.Entity("Connection_To_DataBaseCSharpe.Models.Usuarios", b =>
@@ -79,7 +79,7 @@ namespace Connection_To_DataBaseCSharpe.Migrations
 
                     b.HasKey("IdUsuario");
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("Usuarios", (string)null);
                 });
 
             modelBuilder.Entity("Connection_To_DataBaseCSharpe.Models.Contas", b =>

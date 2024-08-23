@@ -29,6 +29,7 @@ namespace Connection_To_DataBaseCSharpe.Models
             Console.WriteLine("# Digite 4 para Deletar um Usuário");
             Console.WriteLine("# Digite 5 para Recuperar um Usuário");
             Console.WriteLine("# Digite 6 para entrar no Menu de Contas");
+            Console.WriteLine(" Digite 7 para ver Contas de Usuario");
             Console.WriteLine("# Digite 0 para sair");
             int opçãoSelecionada = Convert.ToInt32(Console.ReadLine());
 
@@ -36,8 +37,8 @@ namespace Connection_To_DataBaseCSharpe.Models
             {// passe o parâmetro do construto para a Classe UsuarioDAL
                 case 1:
                     AdicionarAssociacao();
-
                     break;
+ 
                 case 2:
                     Console.Clear();
                     Console.WriteLine("## LISTA DE USUARIOS ##");
@@ -101,6 +102,23 @@ namespace Connection_To_DataBaseCSharpe.Models
                     break;
                 case 6:
                     new MenuConta().Menu();
+                    break;
+                case 7:
+                    Console.Clear();
+                    Console.WriteLine("## EXIBIR CONTAS VINCULADA AO USUARIO ##");
+                    Console.WriteLine();
+
+                    Console.WriteLine("Digite o Id do Usuario que deseja");
+                    int id_ = Convert.ToInt32(Console.ReadLine());
+
+                    new DAL<Usuarios>(new GerenciadorContext()).ExibirContasDeUsuario(id_);
+
+                    Console.WriteLine();
+                    Console.WriteLine(" ---------------------------------------------------  ");
+                    Thread.Sleep(10000);
+                    Menu_();
+
+
                     break;
 
                 case 0: break;
